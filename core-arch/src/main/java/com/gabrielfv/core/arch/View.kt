@@ -10,5 +10,7 @@ interface View<T : Parcelable> {
 
     fun inflate(inflater: LayoutInflater, root: ViewGroup?): View
 
+    fun onStart()
+
     fun updateState(state: T)
 }

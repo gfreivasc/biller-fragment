@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 
 private const val STATE_REGISTRY = "com.gabrielfv.core.arch.STATE_REGISTRY"
 
-abstract class Controller<T : Parcelable> : Fragment() {
-    abstract val view: View<T>
-    private var state: T? = null
+abstract class Controller<S : Parcelable> : Fragment() {
+    abstract val view: View<S>
+    private var state: S? = null
         set(value) {
             if (value != null) {
                 field = value
@@ -19,7 +19,7 @@ abstract class Controller<T : Parcelable> : Fragment() {
         }
     private val destroyableSet = mutableSetOf<Destroyable>()
 
-    abstract fun initialize(): T
+    abstract fun initialize(): S
 
     fun registerDestroyable(vararg destroyable: Destroyable) {
         destroyableSet.addAll(destroyable)
@@ -40,7 +40,7 @@ abstract class Controller<T : Parcelable> : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val saved = savedInstanceState?.getParcelable<T>(STATE_REGISTRY)
+        val saved = savedInstanceState?.getParcelable<S>(STATE_REGISTRY)
         state = saved ?: initialize()
     }
 
@@ -57,7 +57,7 @@ abstract class Controller<T : Parcelable> : Fragment() {
         destroyableSet.clear()
     }
 
-    protected fun setState(setter: (T) -> T) {
+    protected fun setState(setter: (S) -> S) {
         state = setter(state ?: initialize())
     }
 }

@@ -10,28 +10,16 @@ class HomeView(
     override val controller: HomeController
 ) : BindingView<HomeViewBinding, HomeState>(controller) {
 
-    override fun bind(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        binder: (HomeViewBinding) -> Unit
-    ): View {
-        val binding = HomeViewBinding.inflate(inflater, container, false)
-        binder(binding)
-        setListeners()
-        return binding.root
+    override fun bind(inflater: LayoutInflater, container: ViewGroup?): HomeViewBinding {
+        return HomeViewBinding.inflate(inflater, container, false)
+    }
+
+    override fun onStart() {
+        binding.incButton.setOnClickListener { controller.inc() }
+        binding.decButton.setOnClickListener { controller.dec() }
     }
 
     override fun onNewState(state: HomeState) {
         binding.counter.text = state.count.toString()
-    }
-
-    private fun setListeners() {
-        binding.incButton.setOnClickListener {
-            controller.inc()
-        }
-
-        binding.decButton.setOnClickListener {
-            controller.dec()
-        }
     }
 }

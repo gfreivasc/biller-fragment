@@ -3,6 +3,7 @@ package com.gabrielfv.core.arch.tests
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.viewbinding.ViewBinding
 import com.gabrielfv.core.arch.BindingView
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
@@ -26,7 +27,7 @@ class BindingViewTest {
         subject.inflate(mockk(), mockk())
 
         // Then
-        verify { subject.bind(any(), any(), any()) }
+        verify { subject.bind(any(), any()) }
     }
 
     @Test
@@ -38,7 +39,19 @@ class BindingViewTest {
         subject.inflate(mockk(), mockk())
 
         // Then
-        assertThat(subject.binding, `is`(IntBindingView.BIND))
+        assertThat(subject.binding, `is`(VoidBindingView.binding))
+    }
+
+    @Test
+    fun bindingChainsStartSequence() {
+        // Given
+        val subject = spyk(instantiate())
+
+        // When
+        subject.inflate(mockk(), mockk())
+
+        // Then
+        verify { subject.onStart() }
     }
 
     @Test
@@ -104,31 +117,31 @@ class BindingViewTest {
         override fun initialize() = TestState(0)
     }
 
-    class IntBindingView(
+    class VoidBindingView(
         override val controller: TestController
-    ) : BindingView<Int, TestState>(controller) {
+    ) : BindingView<ViewBinding, TestState>(controller) {
 
         override fun bind(
             inflater: LayoutInflater,
-            container: ViewGroup?,
-            binder: (Int) -> Unit
-        ): android.view.View {
-            binder(BIND)
-            return mockk()
+            container: ViewGroup?
+        ): ViewBinding {
+            return Companion.binding
         }
+
+        override fun onStart() = Unit
 
         override fun onNewState(state: TestState) = Unit
 
         companion object : ViewProvider<TestController, TestState> {
-            const val BIND = 4
+            val binding = ViewBinding { mockk() }
             override fun get(controller: TestController): View<TestState> {
-                return IntBindingView(controller)
+                return VoidBindingView(controller)
             }
         }
     }
 
-    private fun instantiate(): IntBindingView {
-        val controller = TestController(IntBindingView)
-        return controller.view as IntBindingView
+    private fun instantiate(): VoidBindingView {
+        val controller = TestController(VoidBindingView)
+        return controller.view as VoidBindingView
     }
 }

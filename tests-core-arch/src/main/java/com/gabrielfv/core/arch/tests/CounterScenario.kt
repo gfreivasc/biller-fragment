@@ -29,24 +29,17 @@ class CounterView(
     override val controller: CounterController
 ) : BindingView<CounterViewBinding, CounterState>(controller) {
 
-    override fun bind(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        binder: (CounterViewBinding) -> Unit
-    ): android.view.View {
-        val binding = CounterViewBinding.inflate(inflater, container, false)
-        binder(binding)
-        attachListeners()
-        return binding.root
+    override fun bind(inflater: LayoutInflater, container: ViewGroup?): CounterViewBinding {
+        return CounterViewBinding.inflate(inflater, container, false)
+    }
+
+    override fun onStart() {
+        binding.incButton.setOnClickListener { controller.inc() }
+        binding.decButton.setOnClickListener { controller.dec() }
     }
 
     override fun onNewState(state: CounterState) {
         binding.counter.text = "${state.count}"
-    }
-
-    private fun attachListeners() {
-        binding.incButton.setOnClickListener { controller.inc() }
-        binding.decButton.setOnClickListener { controller.dec() }
     }
 }
 

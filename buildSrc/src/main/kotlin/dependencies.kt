@@ -26,6 +26,8 @@ object Deps {
     const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.androidSupport}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidSupport}"
     const val androidConstraint = "androidx.constraintlayout:constraintlayout:${Versions.androidConstraint}"
+    // That's probably a risky move
+    const val androidViewBinding = "androidx.databinding:viewbinding:${Versions.androidGradlePlugin}"
 
     const val jetpackNavFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.jetpackNav}"
     const val jetpackNavUi = "androidx.navigation:navigation-ui-ktx:${Versions.jetpackNav}"
