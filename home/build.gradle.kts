@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(project(":core-arch"))
+    implementation(project(":common-resources"))
 
     implementation(Deps.kotlinStdlib)
     implementation(Deps.androidCoreKtx)

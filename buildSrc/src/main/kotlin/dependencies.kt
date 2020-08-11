@@ -10,6 +10,7 @@ object Versions {
 
     const val jUnit = "4.+"
     const val mockK = "1.10.0"
+    const val fragmentTesting = "1.2.4"
     const val espressoJUnit = "1.1.1"
     const val espresso = "3.2.0"
 }
@@ -32,5 +33,6 @@ object Deps {
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val mockK = "io.mockk:mockk:${Versions.mockK}"
     const val espressoJUnit = "androidx.test.ext:junit:${Versions.espressoJUnit}"
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }

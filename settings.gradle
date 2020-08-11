@@ -2,3 +2,5 @@ rootProject.name = "biller-fragments"
 include ':app'
 include ':core-arch'
 include ':home'
+include ':tests-core-arch'
+include ':common-resources'

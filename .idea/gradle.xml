@@ -13,8 +13,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/common-resources" />
             <option value="$PROJECT_DIR$/core-arch" />
             <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/tests-core-arch" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

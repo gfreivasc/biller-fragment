@@ -7,8 +7,9 @@ dependencies {
     implementation(Deps.androidCoreKtx)
     implementation(Deps.androidAppCompat)
 
-    testImplementation(Deps.jUnit)
-    testImplementation(Deps.mockK)
-    androidTestImplementation(Deps.espresso)
-    androidTestImplementation(Deps.espressoJUnit)
+    testCompileOnly(Deps.jUnit)
+    testCompileOnly(Deps.mockK)
+    androidTestCompileOnly(Deps.espresso)
+    androidTestCompileOnly(Deps.espressoJUnit)
+    androidTestCompileOnly(Deps.fragmentTesting)
 }
