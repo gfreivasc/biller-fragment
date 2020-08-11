@@ -8,6 +8,7 @@ dependencies {
     implementation(Deps.androidAppCompat)
 
     testImplementation(Deps.jUnit)
+    testImplementation(Deps.mockK)
     androidTestImplementation(Deps.espresso)
     androidTestImplementation(Deps.espressoJUnit)
 }
