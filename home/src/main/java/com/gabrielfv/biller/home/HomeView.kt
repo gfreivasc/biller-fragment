@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.gabrielfv.biller.home.databinding.HomeViewBinding
 import com.gabrielfv.core.arch.BindingView
+import com.gabrielfv.core.arch.recycler.ItemInteraction
 
 class HomeView(
     override val controller: HomeController
 ) : BindingView<HomeViewBinding, HomeState>(controller) {
+    private lateinit var adapter: BillAdapter
 
     override fun bind(inflater: LayoutInflater, container: ViewGroup?): HomeViewBinding {
         return HomeViewBinding.inflate(inflater, container, false)
@@ -18,7 +20,20 @@ class HomeView(
         binding.progressBar.isVisible = state.loading
         binding.recyclerView.isVisible = !state.loading
         if (!state.loading) {
-            binding.recyclerView.adapter = BillAdapter(state.bills)
+            binding.recyclerView.adapter = manageAdapter(state.bills)
+        }
+    }
+
+    private fun manageAdapter(bills: List<Bill>): BillAdapter {
+        return if (!::adapter.isInitialized) {
+            val adapter = BillAdapter(bills, ItemInteraction.Click { bill ->
+                controller.billClick(bill)
+            })
+            this.adapter = adapter
+            adapter
+        } else {
+            adapter.updateData(bills)
+            adapter
         }
     }
 }
