@@ -1,8 +1,8 @@
 package com.gabrielfv.biller.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.gabrielfv.biller.home.databinding.HomeViewBinding
 import com.gabrielfv.core.arch.BindingView
 
@@ -14,12 +14,11 @@ class HomeView(
         return HomeViewBinding.inflate(inflater, container, false)
     }
 
-    override fun onStart() {
-        binding.incButton.setOnClickListener { controller.inc() }
-        binding.decButton.setOnClickListener { controller.dec() }
-    }
-
     override fun onNewState(state: HomeState) {
-        binding.counter.text = state.count.toString()
+        binding.progressBar.isVisible = state.loading
+        binding.recyclerView.isVisible = !state.loading
+        if (!state.loading) {
+            binding.recyclerView.adapter = BillAdapter(state.bills)
+        }
     }
 }

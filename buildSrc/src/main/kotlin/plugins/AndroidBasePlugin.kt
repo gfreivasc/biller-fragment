@@ -46,8 +46,8 @@ internal class AndroidBasePlugin : Plugin<Project> {
             }
         }
 
-        target.tasks.filterIsInstance<KotlinCompile>().forEach { compile ->
-            compile.kotlinOptions.jvmTarget = "1.8"
+        target.tasks.withType(KotlinCompile::class.java).forEach { task ->
+            task.kotlinOptions.jvmTarget = "1.8"
         }
     }
 }
