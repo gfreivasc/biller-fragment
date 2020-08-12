@@ -25,7 +25,7 @@ class HomeView(
     }
 
     private fun manageAdapter(bills: List<Bill>): BillAdapter {
-        return if (!::adapter.isInitialized) {
+        return if (::adapter.isInitialized.not()) {
             val adapter = BillAdapter(bills, ItemInteraction.Click { bill ->
                 controller.billClick(bill)
             })
