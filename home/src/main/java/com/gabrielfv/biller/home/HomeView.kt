@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.gabrielfv.biller.home.databinding.HomeViewBinding
-import com.gabrielfv.biller.home.domain.entities.Bill
+import com.gabrielfv.biller.home.model.Bill
 import com.gabrielfv.core.arch.BindingView
 import com.gabrielfv.core.arch.recycler.ItemInteraction
 
@@ -26,15 +26,15 @@ class HomeView(
     }
 
     private fun manageAdapter(bills: List<Bill>): BillAdapter {
-        return if (::adapter.isInitialized.not()) {
+        if (::adapter.isInitialized.not()) {
             val adapter = BillAdapter(bills, ItemInteraction.Click { bill ->
                 controller.billClick(bill)
             })
             this.adapter = adapter
-            adapter
         } else {
             adapter.updateData(bills)
-            adapter
         }
+
+        return adapter
     }
 }

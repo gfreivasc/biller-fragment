@@ -10,6 +10,8 @@ object Versions {
 
     const val coroutines = "1.3.0"
 
+    const val roomDb = "2.2.5"
+
     const val jUnit = "4.+"
     const val mockK = "1.10.0"
     const val fragmentTesting = "1.2.4"
@@ -35,6 +37,10 @@ object Deps {
 
     const val jetpackNavFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.jetpackNav}"
     const val jetpackNavUi = "androidx.navigation:navigation-ui-ktx:${Versions.jetpackNav}"
+
+    const val roomDb = "androidx.room:room-runtime:${Versions.roomDb}"
+    const val roomDbKtx = "androidx.room:room-ktx:${Versions.roomDb}"
+    const val roomDbCompiler = "androidx.room:room-compiler:${Versions.roomDb}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val mockK = "io.mockk:mockk:${Versions.mockK}"

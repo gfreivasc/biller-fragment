@@ -2,7 +2,7 @@ package com.gabrielfv.biller.home
 
 import android.view.ViewGroup
 import com.gabrielfv.biller.home.databinding.BillItemBinding
-import com.gabrielfv.biller.home.domain.entities.Bill
+import com.gabrielfv.biller.home.model.Bill
 import com.gabrielfv.core.arch.recycler.BindingListAdapter
 import com.gabrielfv.core.arch.recycler.BindingListViewHolder
 import com.gabrielfv.core.arch.recycler.ItemInteraction
@@ -21,7 +21,11 @@ class BillAdapter(
     inner class VH(private val binding: BillItemBinding) : BindingListViewHolder<Bill>(binding) {
         override fun bind(item: Bill) {
             binding.name.text = item.name
-            binding.value.text = item.value
+            binding.value.text = context.getString(
+                R.string.currency_format,
+                item.valueWhole,
+                item.valueCents
+            )
             binding.root.setOnClickListener {
                 onClickItem(item)
             }

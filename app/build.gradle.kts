@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":home"))
+    implementation(project(":database"))
 
     implementation(Deps.kotlinStdlib)
     implementation(Deps.androidCoreKtx)

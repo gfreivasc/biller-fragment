@@ -16,6 +16,7 @@ dependencies {
     implementation(project(":core-arch"))
     implementation(project(":core-ktx"))
     implementation(project(":common-resources"))
+    implementation(project(":database"))
 
     implementation(Deps.kotlinStdlib)
     implementation(Deps.androidCoreKtx)
