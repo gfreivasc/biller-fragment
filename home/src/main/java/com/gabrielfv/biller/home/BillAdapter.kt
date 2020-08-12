@@ -2,6 +2,7 @@ package com.gabrielfv.biller.home
 
 import android.view.ViewGroup
 import com.gabrielfv.biller.home.databinding.BillItemBinding
+import com.gabrielfv.biller.home.domain.entities.Bill
 import com.gabrielfv.core.arch.recycler.BindingListAdapter
 import com.gabrielfv.core.arch.recycler.BindingListViewHolder
 import com.gabrielfv.core.arch.recycler.ItemInteraction

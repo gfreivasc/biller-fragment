@@ -8,5 +8,7 @@ dependencies {
     implementation(Deps.androidAppCompat)
     implementation(Deps.androidMaterial)
 
+    implementation(Deps.coroutines)
+
     implementation(Deps.androidViewBinding)
 }

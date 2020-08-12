@@ -8,6 +8,8 @@ object Versions {
 
     const val jetpackNav = "2.3.0"
 
+    const val coroutines = "1.3.0"
+
     const val jUnit = "4.+"
     const val mockK = "1.10.0"
     const val fragmentTesting = "1.2.4"
@@ -28,6 +30,8 @@ object Deps {
     const val androidConstraint = "androidx.constraintlayout:constraintlayout:${Versions.androidConstraint}"
     // That's probably a risky move
     const val androidViewBinding = "androidx.databinding:viewbinding:${Versions.androidGradlePlugin}"
+
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     const val jetpackNavFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.jetpackNav}"
     const val jetpackNavUi = "androidx.navigation:navigation-ui-ktx:${Versions.jetpackNav}"

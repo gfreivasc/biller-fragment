@@ -1,30 +1,38 @@
 package com.gabrielfv.biller.home
 
 import android.os.Parcelable
-import android.util.Log
+import com.gabrielfv.biller.home.domain.FetchBillsUseCase
+import com.gabrielfv.biller.home.domain.entities.Bill
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
+import com.gabrielfv.core.arch.coroutines.CoroutinesExecutor
 import com.gabrielfv.core.arch.extras.ViewProvider
 import kotlinx.android.parcel.Parcelize
 
 class HomeController(
-    viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) }
+    private val fetchBillsUseCase: FetchBillsUseCase = FetchBillsUseCase(),
+    private val coroutinesExecutor: CoroutinesExecutor = CoroutinesExecutor(),
+    viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) },
 ) : Controller<HomeState>() {
     override val view: View<HomeState> = viewProvider.get(this)
-    private val bills = mutableListOf(
-        Bill("Water", "$ 10.00"),
-        Bill("Electricity", "$ 28.00"),
-        Bill("Cellular", "$ 19.90"),
-        Bill("Rent", "$ 1,799.40"),
-        Bill("Car Insurance", "$ 199.00"),
-    )
 
-    override fun initialize() = HomeState(false, bills)
+    override fun initialize() = loadingState()
 
-    fun billClick(bill: Bill) {
-        bills.add(Bill("${bill.name}+", bill.value))
-        setState { HomeState(false, bills) }
+    override fun onResume() {
+        super.onResume()
+        setState { loadingState() }
+        coroutinesExecutor.execute {
+            val bills = fetchBillsUseCase.execute()
+            setState { loadedState(bills) }
+        }
+        registerDestroyable(coroutinesExecutor)
     }
+
+    fun billClick(bill: Bill) = Unit
+
+    private fun loadingState() = HomeState(true, listOf())
+
+    private fun loadedState(bills: List<Bill>) = HomeState(false, bills)
 }
 
 @Parcelize

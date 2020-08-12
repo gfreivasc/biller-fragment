@@ -1,4 +1,4 @@
-package com.gabrielfv.biller.home
+package com.gabrielfv.biller.home.domain.entities
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
