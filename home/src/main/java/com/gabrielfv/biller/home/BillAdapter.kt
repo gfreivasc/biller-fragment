@@ -12,6 +12,10 @@ class BillAdapter(
     private val onClickItem: ItemInteraction.Click<Bill>
 ) : BindingListAdapter<Bill>() {
 
+    init {
+        setIdentityMatcher { old, new -> old.id == new.id }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = BillItemBinding.inflate(parent.inflater, parent, false)
         return VH(binding)

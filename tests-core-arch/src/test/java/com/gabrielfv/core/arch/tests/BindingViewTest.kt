@@ -20,89 +20,68 @@ class BindingViewTest {
 
     @Test
     fun inflatingRequestsBinding() {
-        // Given
         val subject = spyk(instantiate())
 
-        // When
         subject.inflate(mockk(), mockk())
 
-        // Then
         verify { subject.bind(any(), any()) }
     }
 
     @Test
     fun bindingHoldsPassedValue() {
-        // Given
         val subject = instantiate()
 
-        // When
         subject.inflate(mockk(), mockk())
 
-        // Then
         assertThat(subject.binding, `is`(VoidBindingView.binding))
     }
 
     @Test
     fun bindingChainsStartSequence() {
-        // Given
         val subject = spyk(instantiate())
 
-        // When
         subject.inflate(mockk(), mockk())
 
-        // Then
         verify { subject.onStart() }
     }
 
     @Test
     fun updatingStateCallsOnNewState() {
-        // Given
         val subject = spyk(instantiate())
         subject.inflate(mockk(), mockk())
 
-        // When
         subject.updateState(TestState(1))
 
-        // Then
         verify { subject.onNewState(eq(TestState(1))) }
     }
 
     @Test
     fun updatingStateWithoutInitializedBindingMakesNothing() {
-        // Given
         val subject = spyk(instantiate())
 
-        // When
         subject.updateState(TestState(1))
 
-        // Then
         verify(exactly = 0) { subject.onNewState(eq(TestState(1))) }
     }
 
     @Test
     fun updatingStateAfterDestroyingMakesNothing() {
-        // Given
         val subject = spyk(instantiate())
         subject.inflate(mockk(), mockk())
         subject.destroy()
 
-        // When
         subject.updateState(TestState(1))
 
-        // Then
         verify(exactly = 0) { subject.onNewState(eq(TestState(1))) }
     }
 
     @Test(expected = NullPointerException::class)
     fun destroyingClearsBinding() {
-        // Given
         val subject = instantiate()
         subject.inflate(mockk(), mockk())
 
-        // When
         subject.destroy()
 
-        // Then
         subject.binding
     }
 

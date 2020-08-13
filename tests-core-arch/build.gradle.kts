@@ -19,6 +19,7 @@ dependencies {
     implementation(Deps.kotlinStdlib)
     implementation(Deps.androidAppCompat)
     implementation(Deps.androidConstraint)
+    implementation(Deps.androidMaterial)
 
     testImplementation(Deps.jUnit)
     testImplementation(Deps.mockK)

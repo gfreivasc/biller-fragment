@@ -19,80 +19,62 @@ class ControllerTest {
 
     @Test
     fun onCreateViewInflatesViewInstance() {
-        // Given
         val inflater = mockk<LayoutInflater>()
         val container = mockk<ViewGroup>()
         val controller = TestController()
 
-        // When
         controller.onCreateView(inflater, container, null)
 
-        // Then
         verify { controller.view.inflate(refEq(inflater), refEq(container)) }
     }
 
     @Test
     fun onActivityCreatedWithSavedStateExposeSavedState() {
-        // Given
         val controller = TestController()
 
-        // When
         controller.onActivityCreated(bundleWithData)
 
-        // Then
         verify { controller.view.updateState(eq(TestState((5)))) }
     }
 
     @Test
     fun onActivityCreatedWithoutStateExposeInitialState() {
-        // Given
         val controller = TestController()
 
-        // When
         controller.onActivityCreated(null)
 
-        // Then
         verify { controller.view.updateState(eq(TestState((0)))) }
     }
 
     @Test
     fun onSaveInstanceWithStateShouldSaveIt() {
-        // Given
         val controller = TestController()
         val bundle = mockk<Bundle>(relaxed = true)
         controller.init()
 
-        // When
         controller.onSaveInstanceState(bundle)
 
-        // Then
         verify { bundle.putParcelable(eq(STATE_REG), eq(TestState(0))) }
     }
 
     @Test
     fun onSaveInstanceWithoutStateShouldDoNothing() {
-        // Given
         val controller = TestController()
         val bundle = mockk<Bundle>(relaxed = true)
 
-        // When
         controller.onSaveInstanceState(bundle)
 
-        // Then
         verify(exactly = 0) { bundle.putParcelable(any(), any()) }
     }
 
     @Test
-    fun registeredDestroyablesAreDestroyedWithController() {
-        // Given
+    fun registeredDestroyableSetIsDestroyedWithController() {
         val controller = TestController()
         val destroyable = mockk<Destroyable>(relaxed = true)
 
-        // When
         controller.registerDestroyable(destroyable)
         controller.onDestroy()
 
-        // Then
         verify { destroyable.destroy() }
     }
 
