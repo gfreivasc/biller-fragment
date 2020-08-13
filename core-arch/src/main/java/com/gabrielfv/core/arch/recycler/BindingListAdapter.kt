@@ -3,10 +3,8 @@ package com.gabrielfv.core.arch.recycler
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BindingListAdapter<T>(
-    items: List<T>
-) : RecyclerView.Adapter<BindingListViewHolder<T>>() {
-    private val items = items.toMutableList()
+abstract class BindingListAdapter<T> : RecyclerView.Adapter<BindingListViewHolder<T>>() {
+    private val items = mutableListOf<T>()
 
     fun updateData(new: List<T>) {
         val diffCallback = ListDiffUtil(items, new)
