@@ -6,10 +6,11 @@ private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 
 const val STEP_LENGTH = 3
 const val CENTS_MULTIPLIER = 100
+const val US_DIVIDER = ','
 
 class BillMapper {
 
-    fun map(domainBill: DomainBill, divider: Char = ','): Bill {
+    fun map(domainBill: DomainBill, divider: Char = US_DIVIDER): Bill {
         val whole = domainBill.valueInCents / CENTS_MULTIPLIER
         val cents = domainBill.valueInCents % CENTS_MULTIPLIER
         return Bill(
@@ -20,7 +21,7 @@ class BillMapper {
         )
     }
 
-    private fun formatBig(number: Int, divider: Char = ',', step: Int = STEP_LENGTH): String {
+    private fun formatBig(number: Int, divider: Char, step: Int = STEP_LENGTH): String {
         val buffer = number.toString()
         val size = buffer.length
 
