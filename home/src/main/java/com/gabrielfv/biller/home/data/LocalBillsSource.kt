@@ -14,7 +14,7 @@ class LocalBillsSource(
             Bill(
                 bill.uuid,
                 bill.name,
-                bill.valueTimesTen
+                bill.valueInCents
             )
         }
     }

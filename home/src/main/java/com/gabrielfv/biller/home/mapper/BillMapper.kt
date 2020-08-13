@@ -5,12 +5,13 @@ import com.gabrielfv.biller.home.model.Bill
 private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 
 const val STEP_LENGTH = 3
+const val CENTS_MULTIPLIER = 100
 
 class BillMapper {
 
     fun map(domainBill: DomainBill, divider: Char = ','): Bill {
-        val whole = domainBill.valueTimesTen / 10
-        val cents = domainBill.valueTimesTen % 10
+        val whole = domainBill.valueInCents / CENTS_MULTIPLIER
+        val cents = domainBill.valueInCents % CENTS_MULTIPLIER
         return Bill(
             id = domainBill.id,
             name = domainBill.name,

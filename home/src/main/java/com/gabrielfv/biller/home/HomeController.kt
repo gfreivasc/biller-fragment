@@ -7,12 +7,13 @@ import com.gabrielfv.biller.home.model.Bill
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.CoroutinesExecutor
+import com.gabrielfv.core.arch.coroutines.MainCoroutinesExecutor
 import com.gabrielfv.core.arch.extras.ViewProvider
 import kotlinx.android.parcel.Parcelize
 
 class HomeController(
     private val fetchBillsUseCase: FetchBillsUseCase = FetchBillsUseCase(),
-    private val coroutinesExecutor: CoroutinesExecutor = CoroutinesExecutor(),
+    private val coroutinesExecutor: CoroutinesExecutor = MainCoroutinesExecutor(),
     private val mapper: BillMapper = BillMapper(),
     viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) },
 ) : Controller<HomeState>() {

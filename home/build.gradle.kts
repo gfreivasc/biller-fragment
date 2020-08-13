@@ -25,6 +25,7 @@ dependencies {
     implementation(Deps.androidConstraint)
 
     testImplementation(Deps.jUnit)
+    testImplementation(Deps.mockK)
     androidTestImplementation(Deps.espresso)
     androidTestImplementation(Deps.espressoJUnit)
 }
