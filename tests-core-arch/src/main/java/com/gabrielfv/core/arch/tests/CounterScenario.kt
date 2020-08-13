@@ -14,7 +14,7 @@ import kotlinx.android.parcel.Parcelize
 data class CounterState(val count: Int) : Parcelable
 
 class CounterController(
-    viewProvider: ViewProvider<CounterController, CounterState> = counterViewProvider
+    viewProvider: ViewProvider<CounterController, CounterState> = ViewProvider { CounterView(it) }
 ) : Controller<CounterState>() {
     override val view: View<CounterState> = viewProvider.get(this)
 
@@ -42,5 +42,3 @@ class CounterView(
         binding.counter.text = "${state.count}"
     }
 }
-
-val counterViewProvider = ViewProvider { controller: CounterController -> CounterView(controller) }

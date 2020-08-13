@@ -15,27 +15,21 @@ class CounterControllerTest {
 
     @Test
     fun stateInitializesWithCount0() {
-        // Given
         val subject = CounterController { view }
 
-        // When
         subject.start()
 
-        // Then
         verify { view.updateState(eq(CounterState(0))) }
     }
 
     @Test
     fun incIncrementsCounter() {
-        // Given
         val subject = CounterController { view }
         subject.start()
 
-        // When
         subject.inc()
         subject.inc()
 
-        // Then
         verify {
             view.updateState(eq(CounterState(0)))  // init
             view.updateState(eq(CounterState(1)))
@@ -45,17 +39,14 @@ class CounterControllerTest {
 
     @Test
     fun decDecrementsCounter() {
-        // Given
         val subject = CounterController { view }
         subject.start()
         subject.inc()
         subject.inc()
 
-        // When
         subject.dec()
         subject.dec()
 
-        // Then
         verify {
             view.updateState(eq(CounterState(0)))  // init
             view.updateState(eq(CounterState(1)))  // inc
