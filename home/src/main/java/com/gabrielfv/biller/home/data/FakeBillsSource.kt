@@ -7,11 +7,11 @@ class FakeBillsSource : BillsSource {
 
     override suspend fun get(): List<Bill> {
         return listOf(
-            Bill("Water", 1000),
-            Bill("Electricity", 2800),
-            Bill("Cellular", 1990),
-            Bill("Rent", 179940),
-            Bill("Car Insurance", 19900),
+            Bill(0, "Water", 1000),
+            Bill(1, "Electricity", 2800),
+            Bill(2, "Cellular", 1990),
+            Bill(3, "Rent", 179940),
+            Bill(4, "Car Insurance", 19900),
         )
     }
 }

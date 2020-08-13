@@ -11,7 +11,11 @@ class LocalBillsSource(
 
     override suspend fun get(): List<Bill> {
         return dao.fetch().map { bill ->
-            Bill(bill.name, bill.valueTimesTen)
+            Bill(
+                bill.uuid,
+                bill.name,
+                bill.valueTimesTen
+            )
         }
     }
 }

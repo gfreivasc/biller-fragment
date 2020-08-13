@@ -12,6 +12,7 @@ class BillMapper {
         val whole = domainBill.valueTimesTen / 10
         val cents = domainBill.valueTimesTen % 10
         return Bill(
+            id = domainBill.id,
             name = domainBill.name,
             valueWhole = formatBig(whole, divider),
             valueCents = cents

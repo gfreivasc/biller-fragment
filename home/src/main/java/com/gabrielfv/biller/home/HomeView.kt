@@ -17,11 +17,11 @@ class HomeView(
         return HomeViewBinding.inflate(inflater, container, false)
     }
 
-    override fun onNewState(state: HomeState) {
-        binding.progressBar.isVisible = state.loading
-        binding.recyclerView.isVisible = !state.loading
+    override fun onNewState(state: HomeState) = with(binding) {
+        progressBar.isVisible = state.loading
+        recyclerView.isVisible = !state.loading
         if (!state.loading) {
-            binding.recyclerView.adapter = manageAdapter(state.bills)
+            recyclerView.adapter = manageAdapter(state.bills)
         }
     }
 

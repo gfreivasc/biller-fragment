@@ -19,14 +19,14 @@ class BillAdapter(
     }
 
     inner class VH(private val binding: BillItemBinding) : BindingListViewHolder<Bill>(binding) {
-        override fun bind(item: Bill) {
-            binding.name.text = item.name
-            binding.value.text = context.getString(
+        override fun bind(item: Bill) = with(binding) {
+            name.text = item.name
+            value.text = context.getString(
                 R.string.currency_format,
                 item.valueWhole,
                 item.valueCents
             )
-            binding.root.setOnClickListener {
+            root.setOnClickListener {
                 onClickItem(item)
             }
         }
