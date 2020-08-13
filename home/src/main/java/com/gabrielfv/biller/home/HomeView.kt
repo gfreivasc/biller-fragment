@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.gabrielfv.biller.home.databinding.HomeViewBinding
-import com.gabrielfv.biller.home.model.Bill
 import com.gabrielfv.core.arch.BindingView
 import com.gabrielfv.core.arch.recycler.ItemInteraction
 

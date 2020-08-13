@@ -5,6 +5,9 @@ import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal class AndroidBasePlugin : Plugin<Project> {
@@ -43,6 +46,10 @@ internal class AndroidBasePlugin : Plugin<Project> {
                 getByName("debug") {
                     minifyEnabled(Android.debugMinify)
                 }
+            }
+
+            (this as ExtensionAware).configure<KotlinJvmOptions> {
+                jvmTarget = "1.8"
             }
         }
 
