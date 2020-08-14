@@ -5,6 +5,7 @@ object Versions {
     const val androidCoreKtx = "1.3.1"
     const val androidSupport = "1.1.0"
     const val androidConstraint = "1.1.3"
+    const val androidRecyclerView = "1.1.0"
 
     const val jetpackNav = "2.3.0"
 
@@ -32,6 +33,7 @@ object Deps {
     const val androidConstraint = "androidx.constraintlayout:constraintlayout:${Versions.androidConstraint}"
     // That's probably a risky move
     const val androidViewBinding = "androidx.databinding:viewbinding:${Versions.androidGradlePlugin}"
+    const val androidRecyclerView = "androidx.recyclerview:recyclerview:${Versions.androidRecyclerView}"
 
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 

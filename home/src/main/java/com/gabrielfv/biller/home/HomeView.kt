@@ -20,6 +20,7 @@ class HomeView(
 
     override fun onStart() = with(binding) {
         recyclerView.adapter = adapter
+        addBill.setOnClickListener { controller.addBill() }
     }
 
     override fun onNewState(state: HomeState) = with(binding) {

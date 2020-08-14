@@ -9,5 +9,15 @@
         android:id="@+id/homeController"
         android:name="com.gabrielfv.biller.home.HomeController"
         android:label="HomeController"
-        tools:layout="@layout/home_view"/>
+        tools:layout="@layout/home_view">
+        <action
+            android:id="@+id/action_home_to_addBill"
+            app:destination="@id/addBillController" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addBillController"
+        android:name="com.gabrielfv.biller.addbill.AddBillController"
+        android:label="AddBillController"
+        tools:layout="@layout/add_bill_view" />
 </navigation>

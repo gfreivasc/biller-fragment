@@ -11,11 +11,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/addbill" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/common-resources" />
             <option value="$PROJECT_DIR$/core-arch" />
             <option value="$PROJECT_DIR$/core-ktx" />
+            <option value="$PROJECT_DIR$/core-nav" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/home" />
             <option value="$PROJECT_DIR$/tests-core-arch" />
