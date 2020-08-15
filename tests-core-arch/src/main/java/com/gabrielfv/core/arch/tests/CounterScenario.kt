@@ -17,8 +17,7 @@ class CounterController(
     viewProvider: ViewProvider<CounterController, CounterState> = ViewProvider { CounterView(it) }
 ) : Controller<CounterState>() {
     override val view: View<CounterState> = viewProvider.get(this)
-
-    override fun initialize() = CounterState(0)
+    override val initialState: CounterState get() = CounterState(0)
 
     fun inc() = setState { CounterState(it.count + 1) }
 

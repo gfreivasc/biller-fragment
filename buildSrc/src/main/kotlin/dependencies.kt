@@ -27,6 +27,7 @@ object Classpath {
 
 object Deps {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+
     const val androidCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreKtx}"
     const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.androidSupport}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidSupport}"

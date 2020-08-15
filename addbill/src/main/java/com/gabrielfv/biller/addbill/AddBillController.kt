@@ -8,6 +8,6 @@ class AddBillController(
     viewProvider: ViewProvider<AddBillController, AddBillState> = ViewProvider { AddBillView(it) }
 ) : Controller<AddBillState>() {
     override val view: View<AddBillState> = viewProvider.get(this)
-
-    override fun initialize(): AddBillState = AddBillState(false)
+    override val initialState: AddBillState
+        get() = AddBillState(false)
 }

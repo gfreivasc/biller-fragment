@@ -20,8 +20,11 @@ class HomeController(
     viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) },
 ) : Controller<HomeState>() {
     override val view: View<HomeState> = viewProvider.get(this)
+    override val initialState: HomeState get() = loadingState()
 
-    override fun initialize() = loadingState()
+    override fun onStarted() {
+        fetchBills()
+    }
 
     override fun onResume() {
         super.onResume()

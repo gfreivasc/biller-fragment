@@ -50,7 +50,7 @@ class ControllerTest {
     fun onSaveInstanceWithStateShouldSaveIt() {
         val controller = TestController()
         val bundle = mockk<Bundle>(relaxed = true)
-        controller.init()
+        controller.onActivityCreated(null)
 
         controller.onSaveInstanceState(bundle)
 
@@ -80,10 +80,8 @@ class ControllerTest {
 
     class TestController : Controller<TestState>() {
         override val view: View<TestState> = mockk(relaxed = true)
-
-        override fun initialize() = TestState(0)
-
-        fun init() = setState { initialize() }
+        override val initialState: TestState
+            get() = TestState(0)
     }
 
     @Parcelize
