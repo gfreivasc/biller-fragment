@@ -17,6 +17,7 @@ dependencies {
     implementation(Deps.androidConstraint)
     implementation(Deps.androidMaterial)
 
+    testImplementation(project(":core-test"))
     testImplementation(Deps.jUnit)
     testImplementation(Deps.mockK)
     androidTestImplementation(Deps.espresso)

@@ -8,6 +8,7 @@ import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
 import com.gabrielfv.core.nav.NavManager
 import com.gabrielfv.core.nav.NavRegistry
+import com.gabrielfv.core.test.start
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -67,7 +68,7 @@ class HomeControllerTest {
             listOf(Bill(1, "foo", "10", 0))
         )
 
-        subject.onActivityCreated(null)
+        subject.start()
 
         verify { mockView.updateState(eq(expected)) }
     }

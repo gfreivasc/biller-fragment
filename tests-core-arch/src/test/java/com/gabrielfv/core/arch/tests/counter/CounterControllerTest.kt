@@ -1,11 +1,9 @@
 package com.gabrielfv.core.arch.tests.counter
 
-import android.os.Bundle
-import android.os.Parcelable
-import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.tests.CounterController
 import com.gabrielfv.core.arch.tests.CounterState
+import com.gabrielfv.core.test.start
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
@@ -54,9 +52,5 @@ class CounterControllerTest {
             view.updateState(eq(CounterState(1)))
             view.updateState(eq(CounterState(0)))
         }
-    }
-
-    private fun <T : Parcelable> Controller<T>.start(savedState: Bundle? = null) {
-        onActivityCreated(savedState)
     }
 }

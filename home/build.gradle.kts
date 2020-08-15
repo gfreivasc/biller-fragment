@@ -24,6 +24,7 @@ dependencies {
     implementation(Deps.jetpackNavUi)
     implementation(Deps.jetpackNavFragment)
 
+    testImplementation(project(":core-test"))
     testImplementation(Deps.jUnit)
     testImplementation(Deps.mockK)
     androidTestImplementation(Deps.espresso)
