@@ -1,7 +1,7 @@
 package com.gabrielfv.biller.home.mapper
 
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.assertThat
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
