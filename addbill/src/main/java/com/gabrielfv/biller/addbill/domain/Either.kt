@@ -37,3 +37,7 @@ fun <L, R> Either<L, R>.toRight() = try {
 } catch (e: ClassCastException) {
     throw IllegalArgumentException("Either ${toString()} is not a Right.")
 }
+
+fun <L, R> Either<L, R>.isLeft() = this is Either.Left<L>
+
+fun <L, R> Either<L, R>.isRight() = this is Either.Right<R>

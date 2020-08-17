@@ -4,5 +4,5 @@ data class AddBillAction(
     val name: String,
     val expiryDay: String,
     val isFixedValue: Boolean,
-    val fixedValue: String,
+    val fixedValue: String? = null,
 )

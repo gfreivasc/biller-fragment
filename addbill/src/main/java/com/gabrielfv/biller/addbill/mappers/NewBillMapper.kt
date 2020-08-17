@@ -9,8 +9,8 @@ class NewBillMapper {
         return NewBill(
             name = action.name,
             expiryDay = action.expiryDay.toIntOrNull() ?: 0,
-            fixedValue = action.isFixedValue,
-            value = action.fixedValue.toIntOrNull()
+            isFixedValue = action.isFixedValue,
+            fixedValue = action.fixedValue?.toIntOrNull()
         )
     }
 }

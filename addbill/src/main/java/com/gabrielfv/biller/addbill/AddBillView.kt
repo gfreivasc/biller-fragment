@@ -25,9 +25,9 @@ class AddBillView(
             val isFixed = checkBoxFixedValue.isChecked
             controller.addBill(AddBillAction(
                 name = inputName.text.toString(),
-                expiryDay = inputDueDay.text.toString(),
+                expiryDay = inputExpiryDay.text.toString(),
                 isFixedValue = isFixed,
-                fixedValue = if (isFixed) inputValue.text.toString() else ""
+                fixedValue = if (isFixed) inputFixedValue.text.toString() else null
             ))
         }
     }
@@ -35,5 +35,9 @@ class AddBillView(
     override fun onNewState(state: AddBillState) = with(binding) {
         valueGroup.isVisible = state.showValueField
         checkBoxFixedValue.isChecked = state.showValueField
+
+        layoutInputName.error = state.nameError
+        layoutInputExpiryDay.error = state.expiryDayError
+        layoutInputFixedValue.error = state.fixedValueError
     }
 }

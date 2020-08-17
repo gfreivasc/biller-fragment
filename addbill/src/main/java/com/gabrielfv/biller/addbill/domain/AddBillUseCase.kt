@@ -13,8 +13,8 @@ class AddBillUseCase(
         val bill = Bill(
             name = newBill.name,
             expiryDay = newBill.expiryDay,
-            fixedValue = newBill.fixedValue,
-            valueInCents = if (newBill.fixedValue) newBill.value else null
+            fixedValue = newBill.isFixedValue,
+            valueInCents = if (newBill.isFixedValue) newBill.fixedValue else null
         )
         source.insert(bill)
     }

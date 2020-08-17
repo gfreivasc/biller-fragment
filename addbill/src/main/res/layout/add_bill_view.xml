@@ -13,21 +13,21 @@
         android:layout_marginLeft="16dp"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputName"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutInputName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputName" />
+        app:layout_constraintTop_toTopOf="@+id/layoutInputName" />
 
     <TextView
-        android:id="@+id/labelDueDay"
+        android:id="@+id/labelExpiryDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="Due day"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputDueDay"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutInputExpiryDay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        app:layout_constraintTop_toTopOf="@+id/layoutInputExpiryDay" />
 
     <CheckBox
         android:id="@+id/checkBoxFixedValue"
@@ -39,19 +39,19 @@
         android:text="Fixed Value"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDueDay" />
+        app:layout_constraintTop_toBottomOf="@+id/labelExpiryDay" />
 
     <TextView
-        android:id="@+id/currentPrice"
+        android:id="@+id/labelFixedValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:text="Current Price"
+        android:text="@string/current_fixed_value_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputValue"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutInputFixedValue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputValue" />
+        app:layout_constraintTop_toTopOf="@+id/layoutInputFixedValue" />
 
     <TextView
         android:id="@+id/currencyMarker"
@@ -59,22 +59,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:text="$"
+        android:text="@string/dollar_marker"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputValue"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutInputFixedValue"
         app:layout_constraintStart_toEndOf="@id/labelsBarrier"
-        app:layout_constraintTop_toTopOf="@+id/inputValue" />
+        app:layout_constraintTop_toTopOf="@+id/layoutInputFixedValue" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/labelsBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="labelName,labelDueDay,checkBoxFixedValue,currentPrice"
+        app:constraint_referenced_ids="labelName,labelExpiryDay,checkBoxFixedValue,labelFixedValue"
         tools:layout_editor_absoluteX="16dp" />
 
-    <EditText
-        android:id="@+id/inputName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutInputName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -82,48 +82,76 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:hint="@string/name_hint"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelsBarrier"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/inputDueDay"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutInputExpiryDay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:ems="10"
         android:inputType="number"
+        android:hint="Expiry day"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBoxFixedValue"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutInputName">
 
-    <EditText
-        android:id="@+id/inputValue"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputExpiryDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutInputFixedValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="Name"
+        android:hint="@string/current_fixed_value_hint"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/currencyMarker"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxFixedValue" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxFixedValue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputFixedValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/valueGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="currentPrice,inputValue,currencyMarker" />
+        app:constraint_referenced_ids="labelFixedValue,layoutInputFixedValue,currencyMarker" />
 
     <Button
         android:id="@+id/addBillButton"
@@ -134,5 +162,5 @@
         android:layout_marginRight="16dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputValue" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutInputFixedValue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

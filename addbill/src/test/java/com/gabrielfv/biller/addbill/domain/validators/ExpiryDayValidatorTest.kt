@@ -1,7 +1,8 @@
-package com.gabrielfv.biller.addbill.domain
+package com.gabrielfv.biller.addbill.domain.validators
 
-import com.gabrielfv.biller.addbill.domain.errors.ExpiryDayError
-import com.gabrielfv.biller.addbill.domain.validators.ExpiryDayValidator
+import com.gabrielfv.biller.addbill.domain.Either
+import com.gabrielfv.biller.addbill.domain.entities.errors.ExpiryDayError
+import com.gabrielfv.biller.addbill.domain.toLeft
 import com.gabrielfv.core.test.isA
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
