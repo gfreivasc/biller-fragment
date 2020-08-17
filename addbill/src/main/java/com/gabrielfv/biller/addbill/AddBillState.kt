@@ -7,4 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class AddBillState(
     val showValueField: Boolean,
     val expiryDayError: String?,
+    val nameError: String?,
+    val fixedValueError: String?
 ) : Parcelable

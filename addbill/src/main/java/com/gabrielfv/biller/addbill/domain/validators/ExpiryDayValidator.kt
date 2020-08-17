@@ -1,6 +1,9 @@
-package com.gabrielfv.biller.addbill.domain
+package com.gabrielfv.biller.addbill.domain.validators
 
+import com.gabrielfv.biller.addbill.domain.Either
 import com.gabrielfv.biller.addbill.domain.errors.ExpiryDayError
+import com.gabrielfv.biller.addbill.domain.left
+import com.gabrielfv.biller.addbill.domain.right
 
 private const val NOT_SAFE_FOR_FEB = 29
 private const val NOT_A_RECURRING_MONTH_DAY = 31

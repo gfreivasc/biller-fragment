@@ -2,4 +2,5 @@
 <resources>
     <string name="invalid_month_day">This is not a valid day for expiration.</string>
     <string name="you_nuts_man">Why would you do this to yourself?</string>
+    <string name="field_blank_error">Field cannot be blank</string>
 </resources>

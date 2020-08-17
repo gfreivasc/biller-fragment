@@ -1,6 +1,7 @@
 package com.gabrielfv.biller.addbill.domain
 
 import com.gabrielfv.biller.addbill.domain.errors.ExpiryDayError
+import com.gabrielfv.biller.addbill.domain.validators.ExpiryDayValidator
 import com.gabrielfv.core.test.isA
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat

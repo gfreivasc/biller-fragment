@@ -1,6 +1,6 @@
 package com.gabrielfv.biller.addbill
 
-import com.gabrielfv.biller.addbill.domain.ExpiryDayValidator
+import com.gabrielfv.biller.addbill.domain.validators.ExpiryDayValidator
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.test.resources.spyingRes
 import io.mockk.mockk

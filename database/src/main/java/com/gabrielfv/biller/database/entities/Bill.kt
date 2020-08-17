@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Bill(
     @PrimaryKey(autoGenerate = true) val uuid: Int = 0,
     val name: String,
-    val valueInCents: Int,
-    val dueDay: Int,
-    val fixedValue: Boolean = false
+    val expiryDay: Int,
+    val fixedValue: Boolean = false,
+    val valueInCents: Int? = null,
 )
