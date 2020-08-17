@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8f3407f-8e17-4aa7-946d-f1dc6bf22155" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Nexus_5X_API_29_x86]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+        <option value="navigationResourceFile" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
+        <option value="Kotlin Interface" />
+        <option value="valueResourceFile" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1futyiVgShwFAH3nW5x13RndQJs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Nexus_5X_API_29_x86" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-15T15:32:14.213Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android-custom-view/Users/gabriel.vasconcelos/Library/Android/sdk/sources/android-29/android/view/ViewGroup.java_SELECTED" value="ViewGroup" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/core-ktx" />
+    <property name="multi-representation-preview/Users/gabriel.vasconcelos/Library/Android/sdk/sources/android-29/android/view/ViewGroup.java_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core-test/src/main/java/com/gabrielfv/core/test/resources" />
+      <recent name="$PROJECT_DIR$/core-test/src/main/java/com/gabrielfv/core/test" />
+      <recent name="$PROJECT_DIR$/test-core-arch/src/main/java/com/gabrielfv/core/arch" />
+      <recent name="$PROJECT_DIR$/test-core-arch/src/test/java/com/gabrielfv/core/arch" />
+      <recent name="$PROJECT_DIR$/test-core-arch" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.gabrielfv.biller.addbill.domain.errors" />
+      <recent name="com.gabrielfv.biller.home.domain.entities" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.gabrielfv.biller.home" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core-ktx" />
+      <recent name="$PROJECT_DIR$/database" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android JUnit.AddBillControllerTest">
+    <configuration name="AddBillControllerTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biller-fragments.addbill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gabrielfv.biller.addbill.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gabrielfv.biller.addbill" />
+      <option name="MAIN_CLASS_NAME" value="com.gabrielfv.biller.addbill.AddBillControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddBillControllerTest.validateFebruaryUnsafeDayReturnsCorrectMessage" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biller-fragments.addbill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gabrielfv.biller.addbill.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gabrielfv.biller.addbill" />
+      <option name="MAIN_CLASS_NAME" value="com.gabrielfv.biller.addbill.AddBillControllerTest" />
+      <option name="METHOD_NAME" value="validateFebruaryUnsafeDayReturnsCorrectMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExpiryDayValidatorTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biller-fragments.addbill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gabrielfv.biller.addbill.domain.ValidateExpiryDayKt" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gabrielfv.biller.addbill.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.gabrielfv.biller.addbill.domain.ExpiryDayValidatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="biller-fragments.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HomeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biller-fragments.home" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gabrielfv.biller.home.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gabrielfv.biller.home" />
+      <option name="MAIN_CLASS_NAME" value="com.gabrielfv.biller.home.HomeControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HomeControllerTest.resumingWithoutModificationDoesNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biller-fragments.home" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gabrielfv.biller.home.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gabrielfv.biller.home" />
+      <option name="MAIN_CLASS_NAME" value="com.gabrielfv.biller.home.HomeControllerTest" />
+      <option name="METHOD_NAME" value="resumingWithoutModificationDoesNothing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.AddBillControllerTest" />
+        <item itemvalue="Android JUnit.AddBillControllerTest.validateFebruaryUnsafeDayReturnsCorrectMessage" />
+        <item itemvalue="Android JUnit.ExpiryDayValidatorTest" />
+        <item itemvalue="JUnit.HomeControllerTest" />
+        <item itemvalue="JUnit.HomeControllerTest.resumingWithoutModificationDoesNothing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8f3407f-8e17-4aa7-946d-f1dc6bf22155" name="Default Changelist" comment="" />
+      <created>1597080061322</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597080061322</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Merge branch 'main' into bills_listing&#10;&#10;# Conflicts:&#10;#&#9;buildSrc/build/classes/kotlin/main/Classpath.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Deps.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Versions.class&#10;#&#9;buildSrc/build/classes/kotlin/main/plugins/AndroidBasePlugin.class&#10;#&#9;buildSrc/build/kotlin/compileKotlin/build-history.bin&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/counters.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/last-build.bin&#10;#&#9;buildSrc/build/libs/buildSrc.jar">
+      <created>1597284447463</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597284447463</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch 'main' into bills_listing&#10;&#10;# Conflicts:&#10;#&#9;buildSrc/build/classes/kotlin/main/Classpath.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Deps.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Versions.class&#10;#&#9;buildSrc/build/classes/kotlin/main/plugins/AndroidBasePlugin.class&#10;#&#9;buildSrc/build/kotlin/compileKotlin/build-history.bin&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/counters.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/last-build.bin&#10;#&#9;buildSrc/build/libs/buildSrc.jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' into bills_listing&#10;&#10;# Conflicts:&#10;#&#9;buildSrc/build/classes/kotlin/main/Classpath.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Deps.class&#10;#&#9;buildSrc/build/classes/kotlin/main/Versions.class&#10;#&#9;buildSrc/build/classes/kotlin/main/plugins/AndroidBasePlugin.class&#10;#&#9;buildSrc/build/kotlin/compileKotlin/build-history.bin&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/inputs/source-to-output.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/constants.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/counters.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/file-to-id.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/id-to-file.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.keystream.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.len&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab.values.at&#10;#&#9;buildSrc/build/kotlin/compileKotlin/caches-jvm/lookups/lookups.tab_i&#10;#&#9;buildSrc/build/kotlin/compileKotlin/last-build.bin&#10;#&#9;buildSrc/build/libs/buildSrc.jar" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="354" y="78" key="#PSD" timestamp="1597431932088">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="354" y="78" key="#PSD/0.0.1440.900@0.0.1440.900" timestamp="1597431932088" />
+    <state x="1925" y="279" key="#PSD/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597337265474" />
+    <state x="325" y="384" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1597270670063">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="325" y="384" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.900@0.0.1440.900" timestamp="1597270670063" />
+    <state x="1873" y="461" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597176434501" />
+    <state x="416" y="338" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1597270672464">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="416" y="338" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.900@0.0.1440.900" timestamp="1597270672464" />
+    <state x="328" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597540006111">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="328" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1597540006111" />
+    <state x="1877" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597442520918" />
+    <state x="473" y="282" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1597537128636">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="473" y="282" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1597537128636" />
+    <state x="2071" y="338" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597265243372" />
+    <state x="411" y="252" key="AndroidCreateResourceFileDialog" timestamp="1597357928376">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="411" y="252" key="AndroidCreateResourceFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1597357928376" />
+    <state x="1988" y="302" key="AndroidCreateResourceFileDialog/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597257152398" />
+    <state x="554" y="256" key="AndroidCreateXmlResourceDialog" timestamp="1597537019761">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="554" y="256" key="AndroidCreateXmlResourceDialog/0.0.1440.900@0.0.1440.900" timestamp="1597537019761" />
+    <state x="2179" y="307" key="AndroidCreateXmlResourceDialog/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597443975982" />
+    <state x="151" y="0" key="CommitChangelistDialog2" timestamp="1597284447169">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="151" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1597284447169" />
+    <state width="1396" height="290" key="GridCell.Tab.0.bottom" timestamp="1597543308463">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1396" height="290" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1597543308463" />
+    <state width="1396" height="245" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1597187213968" />
+    <state width="1876" height="359" key="GridCell.Tab.0.bottom/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597507107407" />
+    <state width="1876" height="304" key="GridCell.Tab.0.bottom/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597599" />
+    <state width="1876" height="203" key="GridCell.Tab.0.bottom/1440.23.1920.1057/0.23.1440.877@1440.23.1920.1057" timestamp="1597504915163" />
+    <state width="1396" height="290" key="GridCell.Tab.0.center" timestamp="1597543308462">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1396" height="290" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1597543308462" />
+    <state width="1396" height="245" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1597187213967" />
+    <state width="1876" height="359" key="GridCell.Tab.0.center/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597507107406" />
+    <state width="1876" height="304" key="GridCell.Tab.0.center/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597598" />
+    <state width="1876" height="203" key="GridCell.Tab.0.center/1440.23.1920.1057/0.23.1440.877@1440.23.1920.1057" timestamp="1597504915163" />
+    <state width="1396" height="290" key="GridCell.Tab.0.left" timestamp="1597543308461">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1396" height="290" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1597543308461" />
+    <state width="1396" height="245" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1597187213966" />
+    <state width="1876" height="359" key="GridCell.Tab.0.left/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597507107405" />
+    <state width="1876" height="304" key="GridCell.Tab.0.left/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597597" />
+    <state width="1876" height="203" key="GridCell.Tab.0.left/1440.23.1920.1057/0.23.1440.877@1440.23.1920.1057" timestamp="1597504915162" />
+    <state width="1396" height="290" key="GridCell.Tab.0.right" timestamp="1597543308463">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1396" height="290" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1597543308463" />
+    <state width="1396" height="245" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1597187213967" />
+    <state width="1876" height="359" key="GridCell.Tab.0.right/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597507107406" />
+    <state width="1876" height="304" key="GridCell.Tab.0.right/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597599" />
+    <state width="1876" height="203" key="GridCell.Tab.0.right/1440.23.1920.1057/0.23.1440.877@1440.23.1920.1057" timestamp="1597504915163" />
+    <state width="1876" height="304" key="GridCell.Tab.1.bottom" timestamp="1597506597602">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1396" height="245" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1597188206829" />
+    <state width="0" height="0" key="GridCell.Tab.1.bottom/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597506408507" />
+    <state width="1876" height="304" key="GridCell.Tab.1.bottom/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597602" />
+    <state width="1876" height="304" key="GridCell.Tab.1.center" timestamp="1597506597601">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1396" height="245" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1597188206829" />
+    <state width="0" height="0" key="GridCell.Tab.1.center/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597506408506" />
+    <state width="1876" height="304" key="GridCell.Tab.1.center/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597601" />
+    <state width="1876" height="304" key="GridCell.Tab.1.left" timestamp="1597506597600">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1396" height="245" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1597188206828" />
+    <state width="0" height="0" key="GridCell.Tab.1.left/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597506408505" />
+    <state width="1876" height="304" key="GridCell.Tab.1.left/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597600" />
+    <state width="1876" height="304" key="GridCell.Tab.1.right" timestamp="1597506597601">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1396" height="245" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1597188206829" />
+    <state width="0" height="0" key="GridCell.Tab.1.right/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597506408507" />
+    <state width="1876" height="304" key="GridCell.Tab.1.right/1440.0.1920.1080/0.23.1440.877@1440.0.1920.1080" timestamp="1597506597601" />
+    <state x="144" y="79" key="MergeDialog" timestamp="1597284337798">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1597284337798" />
+    <state x="176" y="113" width="1002" height="617" key="MultipleFileMergeDialog" timestamp="1597284422012">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="176" y="113" width="1002" height="617" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1597284422012" />
+    <state x="2183" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597505760306">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2183" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597505760306" />
+    <state x="469" y="201" width="670" height="676" key="search.everywhere.popup" timestamp="1597357581120">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="469" y="201" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1597357581120" />
+    <state x="2065" y="241" key="search.everywhere.popup/1440.0.1920.1080/0.0.1440.900@1440.0.1920.1080" timestamp="1597168751546" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/DiffUtil.java</url>
+          <line>844</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/home/src/main/java/com/gabrielfv/biller/home/HomeController.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/home/src/main/java/com/gabrielfv/biller/home/HomeController.kt</url>
+          <line>31</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
