@@ -11,12 +11,14 @@ import com.gabrielfv.core.arch.coroutines.MainCoroutinesExecutor
 import com.gabrielfv.core.arch.extras.ViewProvider
 import com.gabrielfv.core.nav.NavManager
 import com.gabrielfv.core.nav.NavRegistry
+import com.gabrielfv.core.nav.Routes
+import com.gabrielfv.core.nav.read
 
 class HomeController(
     private val fetchBillsUseCase: FetchBillsUseCase = FetchBillsUseCase(),
     private val coroutinesExecutor: CoroutinesExecutor = MainCoroutinesExecutor(),
     private val mapper: BillMapper = BillMapper(),
-    private val navManager: NavManager = NavManager,
+    private val nav: NavRegistry<Routes> = NavManager.getRegistry(),
     viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) },
 ) : Controller<HomeState>() {
     override val view: View<HomeState> = viewProvider.get(this)
@@ -28,7 +30,7 @@ class HomeController(
 
     override fun onResume() {
         super.onResume()
-        if (navManager.read<Boolean>(NavRegistry.BILLS_MODIFIED) == true) {
+        if (nav.read<Boolean>(NavRegistry.BILLS_MODIFIED) == true) {
             fetchBills()
         }
     }
@@ -47,7 +49,7 @@ class HomeController(
     fun billClick(bill: Bill) = Unit
 
     fun addBill() {
-        findNavController().navigate(navManager.routes.addBill)
+        findNavController().navigate(nav.routes.addBill)
     }
 
     private fun loadingState() = HomeState(true, listOf())

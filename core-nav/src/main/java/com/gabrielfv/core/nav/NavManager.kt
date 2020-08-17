@@ -1,25 +1,16 @@
 package com.gabrielfv.core.nav
 
-import androidx.collection.SimpleArrayMap
-import java.lang.IllegalStateException
-
 object NavManager {
-    private lateinit var configuredRoutes: Routes
-    val routes: Routes get() = if (::configuredRoutes.isInitialized) {
-        configuredRoutes
-    } else {
-        throw IllegalStateException("NavigationManager has not been initialized with Routes")
+    private lateinit var registry: NavRegistry<*>
+
+    fun <R> init(registry: NavRegistry<R>) {
+        this.registry = registry
     }
 
-    fun init(routes: Routes) {
-        configuredRoutes = routes
-    }
-
-    private val registry = SimpleArrayMap<String, Any>()
-
-    fun readAny(key: String): Any? = registry[key]
-
-    inline fun <reified T : Any> read(key: String): T? {
-        return readAny(key) as? T
+    @Suppress("UNCHECKED_CAST")
+    fun <R> getRegistry(): NavRegistry<R> = try {
+        registry as NavRegistry<R>
+    } catch (e: ClassCastException) {
+        throw IllegalStateException("Requested registry with wrong routing")
     }
 }

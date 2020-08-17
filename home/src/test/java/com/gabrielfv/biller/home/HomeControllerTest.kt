@@ -8,6 +8,7 @@ import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
 import com.gabrielfv.core.nav.NavManager
 import com.gabrielfv.core.nav.NavRegistry
+import com.gabrielfv.core.nav.Routes
 import com.gabrielfv.core.test.start
 import io.mockk.every
 import io.mockk.mockk
@@ -20,7 +21,7 @@ private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 
 class HomeControllerTest {
     private val mockView = mockk<View<HomeState>>(relaxed = true)
-    private val mockNav = mockk<NavManager>(relaxed = true)
+    private val mockNav = mockk<NavRegistry<Routes>>(relaxed = true)
 
     @Test
     fun initialStateIsLoading() {
@@ -34,7 +35,7 @@ class HomeControllerTest {
 
     @Test
     fun resumingAfterModifiedTriggersDataUpdate() {
-        every { mockNav.read<Boolean>(eq(NavRegistry.BILLS_MODIFIED)) } returns true
+        every { mockNav.readAny(eq(NavRegistry.BILLS_MODIFIED)) } returns true
         val subject = instantiate()
         val expected = HomeState(
             false,
@@ -48,7 +49,7 @@ class HomeControllerTest {
 
     @Test
     fun resumingWithoutModificationDoesNothing() {
-        every { mockNav.read<Boolean>(eq(NavRegistry.BILLS_MODIFIED)) } returns false
+        every { mockNav.readAny(eq(NavRegistry.BILLS_MODIFIED)) } returns false
         val subject = instantiate()
         val expected = HomeState(
             false,
@@ -77,7 +78,7 @@ class HomeControllerTest {
         fetchBillsUseCase = FetchBillsUseCase(FakeSource()),
         coroutinesExecutor = InstantCoroutinesExecutor(),
         mapper = BillMapper(),
-        navManager = mockNav,
+        nav = mockNav,
         viewProvider = { mockView }
     )
 
