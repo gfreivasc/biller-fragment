@@ -48,7 +48,7 @@ class AddBillControllerTest {
     @Test
     fun validateEmptyNameReturnsCorrectMessage() {
         val subject = spyingRes(instantiate()) {
-            R.string.field_blank_error to "Empty"
+            R.string.field_blank_error toString  "Empty"
         }
         val expected = mockState(nameError = "Empty")
 
@@ -62,7 +62,7 @@ class AddBillControllerTest {
     @Test
     fun validateEmptyFixedValueIfIsFixedReturnsCorrectMessage() {
         val subject = spyingRes(instantiate()) {
-            R.string.field_blank_error to "Empty"
+            R.string.field_blank_error toString "Empty"
         }
         val expected = mockState(fixedValueError = "Empty")
 
