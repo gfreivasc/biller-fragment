@@ -1,17 +1,16 @@
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.0"
     `kotlin-dsl`
 }
 
 repositories {
     google()
     jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
 }
 
 dependencies {
     val agpVer = "4.2.0-alpha07"
-    val kotlinVer = "1.4.0-rc"
+    val kotlinVer = "1.4.0"
     implementation(gradleApi())
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer")
