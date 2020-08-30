@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    val agpVer = "4.2.0-alpha07"
+    val agpVer = "4.2.0-alpha08"
     val kotlinVer = "1.4.0"
     implementation(gradleApi())
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer")

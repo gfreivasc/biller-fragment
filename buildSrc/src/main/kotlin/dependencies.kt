@@ -1,6 +1,6 @@
 object Versions {
     const val kotlin = "1.4.0-rc"
-    const val androidGradlePlugin = "4.2.0-alpha07"
+    const val androidGradlePlugin = "4.2.0-alpha08"
 
     const val androidCoreKtx = "1.3.1"
     const val androidSupport = "1.1.0"
