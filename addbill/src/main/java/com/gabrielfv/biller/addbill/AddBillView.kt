@@ -1,19 +1,16 @@
 package com.gabrielfv.biller.addbill
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.View
 import androidx.core.view.isVisible
 import com.gabrielfv.biller.addbill.databinding.AddBillViewBinding
-import com.gabrielfv.biller.addbill.domain.entities.NewBill
 import com.gabrielfv.core.arch.BindingView
-import com.gabrielfv.core.arch.Controller
 
 class AddBillView(
     override val controller: AddBillController
-) : BindingView<AddBillViewBinding, AddBillState>(controller) {
+) : BindingView<AddBillViewBinding, AddBillState>(controller, R.layout.add_bill_view) {
 
-    override fun bind(inflater: LayoutInflater, container: ViewGroup?): AddBillViewBinding {
-        return AddBillViewBinding.inflate(inflater, container, false)
+    override fun bind(view: View): AddBillViewBinding {
+        return AddBillViewBinding.bind(view)
     }
 
     override fun onStart() = with(binding) {
