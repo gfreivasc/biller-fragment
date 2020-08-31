@@ -92,7 +92,7 @@ class BindingViewTest {
         provider: ViewProvider<TestController, TestState>
     ) : Controller<TestState>() {
         override val view: View<TestState> = provider.get(this)
-        override fun onStarted() = TestState(0)
+        override fun initialize() = TestState(0)
     }
 
     class VoidBindingView(

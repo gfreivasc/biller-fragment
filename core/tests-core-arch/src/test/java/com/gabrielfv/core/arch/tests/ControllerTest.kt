@@ -70,7 +70,7 @@ class ControllerTest {
 
     class TestController : Controller<TestState>() {
         override val view: View<TestState> = mockk(relaxed = true)
-        override fun onStarted() = TestState(0)
+        override fun initialize() = TestState(0)
     }
 
     @Parcelize

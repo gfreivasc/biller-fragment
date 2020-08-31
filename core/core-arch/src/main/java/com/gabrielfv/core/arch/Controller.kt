@@ -8,6 +8,14 @@ import androidx.fragment.app.Fragment
 
 private const val STATE_REGISTRY = "com.gabrielfv.core.arch.STATE_REGISTRY"
 
+/**
+ * Default controller that uses regular [androidx.fragment.app.Fragment]
+ * class as a base to allow for easier integration in a codebase with
+ * intended lower friction, since it's easier to implement.
+ *
+ * This allows client code to leverage existing fragment navigation
+ * and instance management solutions, like jetpack navigation.
+ */
 abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> {
     private val engine: ControllerDefinition<S> by lazy { ControllerEngine(view) }
     override val state: S get() = engine.state
@@ -17,7 +25,7 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
      * called every time fragment is initialized without a saved
      * state.
      */
-    abstract fun onStarted(): S
+    abstract fun initialize(): S
 
     /**
      * Registers objects with a `.destroy()` routine to be called
@@ -45,7 +53,7 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val saved = savedInstanceState?.getParcelable<S>(STATE_REGISTRY)
-        setState(saved ?: onStarted())
+        setState(saved ?: initialize())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -58,20 +66,17 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
         destroy()
     }
 
+    /**
+     * This is not supposed to be called since the system is
+     * already able to properly handle fragment composition,
+     * that is if we'd wish to register this controller within
+     * another set to be destroyed for whatever reason.
+     */
     override fun destroy() {
         engine.destroy()
     }
 
     override fun setState(state: S) {
         engine.setState(state)
-    }
-
-    /**
-     * Defines a new state for the controller and dispatches
-     * it to the view. The callback receives the current state
-     * to allow for state evolution logic.
-     */
-    fun setState(setter: (S) -> S) {
-        setState(setter(state))
     }
 }

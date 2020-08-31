@@ -24,7 +24,7 @@ class AddBillController(
 ) : Controller<AddBillState>() {
     override val view: View<AddBillState> = viewProvider.get(this)
 
-    override fun onStarted(): AddBillState {
+    override fun initialize(): AddBillState {
         return AddBillState(
             false,
             null,

@@ -1,8 +1,13 @@
 package com.gabrielfv.core.arch
 
 import android.os.Parcelable
-import java.lang.IllegalStateException
 
+/**
+ * General implementation of logic engine that powers
+ * controller API. It handles state management and
+ * [View] communication, along with logic to prevent
+ * memory leaking.
+ */
 internal class ControllerEngine<S : Parcelable>(
     override val view: View<S>,
 ) : ControllerDefinition<S> {
