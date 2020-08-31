@@ -13,8 +13,7 @@ class AndroidAppPlugin : Plugin<Project> {
             apply(AndroidBasePlugin::class.java)
         }
 
-        val android = target.extensions.findByType(AppExtension::class.java)
-        android?.apply {
+        target.getAndroid<AppExtension>().apply {
             defaultConfig {
                 applicationId(App.applicationId)
                 versionCode(App.versionCode)

@@ -17,8 +17,7 @@ internal class AndroidBasePlugin : Plugin<Project> {
             apply("kotlin-android-extensions")
         }
 
-        val android = target.extensions.findByType(BaseExtension::class.java)
-        android?.apply {
+        target.getAndroid<BaseExtension>().apply {
             compileSdkVersion(Android.compileSdkVersion)
             buildToolsVersion(Android.buildToolsVersion)
 

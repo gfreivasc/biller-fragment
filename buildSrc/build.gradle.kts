@@ -31,4 +31,11 @@ gradlePlugin {
             implementationClass = "plugins.AndroidLibPlugin"
         }
     }
+
+    plugins {
+        create("coreLibDesugar") {
+            id = "coreLibDesugar"
+            implementationClass = "plugins.CoreLibraryDesugaringPlugin"
+        }
+    }
 }
