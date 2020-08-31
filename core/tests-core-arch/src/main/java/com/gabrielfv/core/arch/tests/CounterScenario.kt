@@ -1,8 +1,6 @@
 package com.gabrielfv.core.arch.tests
 
 import android.os.Parcelable
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.gabrielfv.core.arch.BindingView
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
@@ -17,7 +15,7 @@ class CounterController(
     viewProvider: ViewProvider<CounterController, CounterState> = ViewProvider { CounterView(it) }
 ) : Controller<CounterState>() {
     override val view: View<CounterState> = viewProvider.get(this)
-    override val initialState: CounterState get() = CounterState(0)
+    override fun onStarted() = CounterState(0)
 
     fun inc() = setState { CounterState(it.count + 1) }
 
@@ -26,10 +24,10 @@ class CounterController(
 
 class CounterView(
     override val controller: CounterController
-) : BindingView<CounterViewBinding, CounterState>(controller) {
+) : BindingView<CounterViewBinding, CounterState>(controller, R.layout.counter_view) {
 
-    override fun bind(inflater: LayoutInflater, container: ViewGroup?): CounterViewBinding {
-        return CounterViewBinding.inflate(inflater, container, false)
+    override fun bind(view: android.view.View): CounterViewBinding {
+        return CounterViewBinding.bind(view)
     }
 
     override fun onStart() {

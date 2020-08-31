@@ -8,39 +8,16 @@ import androidx.fragment.app.Fragment
 
 private const val STATE_REGISTRY = "com.gabrielfv.core.arch.STATE_REGISTRY"
 
-abstract class Controller<S : Parcelable> : Fragment() {
-    abstract val view: View<S>
-    abstract val initialState: S
-    protected var state: S? = null
-        set(value) {
-            if (value != null) {
-                field = value
-                view.updateState(value)
-            }
-        }
-    private val destroyableSet = mutableSetOf<Destroyable>()
+abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> {
+    private val engine: ControllerDefinition<S> by lazy { ControllerEngine(view) }
+    override val state: S get() = engine.state
 
     /**
      * Initialization of view state and controller logic. It's
      * called every time fragment is initialized without a saved
      * state.
      */
-    protected open fun onStarted() {
-        state = initialState
-    }
-
-    private fun startAndCheckState() {
-        onStarted()
-        if (state == null) {
-            throw IllegalStateException(
-                """
-                    ${this::class.java.simpleName}.onStarted() did not start it's state.
-                    Make sure its implementation of `.onStarted()` sets the state synchronously,
-                    or use the default implementation instead.
-                """.trimIndent()
-            )
-        }
-    }
+    abstract fun onStarted(): S
 
     /**
      * Registers objects with a `.destroy()` routine to be called
@@ -48,8 +25,8 @@ abstract class Controller<S : Parcelable> : Fragment() {
      * registered more than once, since any call will simply be ignored
      * after the first one.
      */
-    fun registerDestroyable(vararg destroyable: Destroyable) {
-        destroyableSet.addAll(destroyable)
+    override fun registerDestroyable(vararg destroyable: Destroyable) {
+        engine.registerDestroyable(*destroyable)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,24 +45,25 @@ abstract class Controller<S : Parcelable> : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val saved = savedInstanceState?.getParcelable<S>(STATE_REGISTRY)
-        if (saved == null) {
-            startAndCheckState()
-        } else {
-            state = saved
-        }
+        setState(saved ?: onStarted())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        if (state != null) {
-            outState.putParcelable(STATE_REGISTRY, state)
-        }
+        outState.putParcelable(STATE_REGISTRY, state)
         super.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        destroyableSet.forEach { it.destroy() }
-        destroyableSet.clear()
+        destroy()
+    }
+
+    override fun destroy() {
+        engine.destroy()
+    }
+
+    override fun setState(state: S) {
+        engine.setState(state)
     }
 
     /**
@@ -93,7 +71,7 @@ abstract class Controller<S : Parcelable> : Fragment() {
      * it to the view. The callback receives the current state
      * to allow for state evolution logic.
      */
-    protected inline fun setState(setter: (S) -> S) {
-        state = setter(state ?: initialState)
+    fun setState(setter: (S) -> S) {
+        setState(setter(state))
     }
 }

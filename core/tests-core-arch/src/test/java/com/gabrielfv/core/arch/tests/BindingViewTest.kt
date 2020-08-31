@@ -2,7 +2,6 @@ package com.gabrielfv.core.arch.tests
 
 import android.os.Parcelable
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.gabrielfv.core.arch.BindingView
 import com.gabrielfv.core.arch.Controller
@@ -17,21 +16,22 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class BindingViewTest {
+    private val inflater = mockk<LayoutInflater>(relaxed = true)
 
     @Test
     fun inflatingRequestsBinding() {
         val subject = spyk(instantiate())
 
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
 
-        verify { subject.bind(any(), any()) }
+        verify { subject.bind(any()) }
     }
 
     @Test
     fun bindingHoldsPassedValue() {
         val subject = instantiate()
 
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
 
         assertThat(subject.binding, `is`(VoidBindingView.binding))
     }
@@ -40,7 +40,7 @@ class BindingViewTest {
     fun bindingChainsStartSequence() {
         val subject = spyk(instantiate())
 
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
 
         verify { subject.onStart() }
     }
@@ -48,7 +48,7 @@ class BindingViewTest {
     @Test
     fun updatingStateCallsOnNewState() {
         val subject = spyk(instantiate())
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
 
         subject.updateState(TestState(1))
 
@@ -67,7 +67,7 @@ class BindingViewTest {
     @Test
     fun updatingStateAfterDestroyingMakesNothing() {
         val subject = spyk(instantiate())
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
         subject.destroy()
 
         subject.updateState(TestState(1))
@@ -78,7 +78,7 @@ class BindingViewTest {
     @Test(expected = NullPointerException::class)
     fun destroyingClearsBinding() {
         val subject = instantiate()
-        subject.inflate(mockk(), mockk())
+        subject.inflate(inflater, mockk())
 
         subject.destroy()
 
@@ -92,17 +92,14 @@ class BindingViewTest {
         provider: ViewProvider<TestController, TestState>
     ) : Controller<TestState>() {
         override val view: View<TestState> = provider.get(this)
-        override val initialState: TestState get() = TestState(0)
+        override fun onStarted() = TestState(0)
     }
 
     class VoidBindingView(
         override val controller: TestController
-    ) : BindingView<ViewBinding, TestState>(controller) {
+    ) : BindingView<ViewBinding, TestState>(controller, 0) {
 
-        override fun bind(
-            inflater: LayoutInflater,
-            container: ViewGroup?
-        ): ViewBinding {
+        override fun bind(view: android.view.View): ViewBinding {
             return Companion.binding
         }
 

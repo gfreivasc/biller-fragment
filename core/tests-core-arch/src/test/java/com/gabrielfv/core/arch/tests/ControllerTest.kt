@@ -58,16 +58,6 @@ class ControllerTest {
     }
 
     @Test
-    fun onSaveInstanceWithoutStateShouldDoNothing() {
-        val controller = TestController()
-        val bundle = mockk<Bundle>(relaxed = true)
-
-        controller.onSaveInstanceState(bundle)
-
-        verify(exactly = 0) { bundle.putParcelable(any(), any()) }
-    }
-
-    @Test
     fun registeredDestroyableSetIsDestroyedWithController() {
         val controller = TestController()
         val destroyable = mockk<Destroyable>(relaxed = true)
@@ -80,8 +70,7 @@ class ControllerTest {
 
     class TestController : Controller<TestState>() {
         override val view: View<TestState> = mockk(relaxed = true)
-        override val initialState: TestState
-            get() = TestState(0)
+        override fun onStarted() = TestState(0)
     }
 
     @Parcelize

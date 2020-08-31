@@ -19,24 +19,24 @@ class HomeController(
     private val coroutinesExecutor: CoroutinesExecutor = MainCoroutinesExecutor(),
     private val mapper: BillMapper = BillMapper(),
     private val nav: NavRegistry<Routes> = NavManager.getRegistry(),
-    viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) },
+    viewProvider: ViewProvider<HomeController, HomeState> = ViewProvider { HomeView(it) }
 ) : Controller<HomeState>() {
     override val view: View<HomeState> = viewProvider.get(this)
-    override val initialState: HomeState get() = loadingState()
 
-    override fun onStarted() {
-        fetchBills()
+    override fun onStarted(): HomeState {
+        return loadingState()
+            .also { fetchBills() }
     }
 
     override fun onResume() {
         super.onResume()
         if (nav.read<Boolean>(NavRegistry.BILLS_MODIFIED) == true) {
+            setState { loadingState() }
             fetchBills()
         }
     }
 
     private fun fetchBills() {
-        setState { loadingState() }
         coroutinesExecutor.execute {
             val bills = fetchBillsUseCase
                 .execute()
