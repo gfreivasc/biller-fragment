@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.4.0-rc"
+    const val kotlin = "1.4.0"
     const val kotlinxDatetime = "0.1.0"
 
     const val androidGradlePlugin = "4.2.0-alpha08"
