@@ -3,9 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":home"))
-    implementation(project(":addbill"))
-    implementation(project(":core-nav"))
+    implementation(project(":features:home"))
+    implementation(project(":features:addbill"))
+    implementation(project(":core:core-nav"))
     implementation(project(":database"))
 
     implementation(Deps.kotlinStdlib)

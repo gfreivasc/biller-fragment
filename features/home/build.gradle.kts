@@ -10,9 +10,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":core-arch"))
-    implementation(project(":core-ktx"))
-    implementation(project(":core-nav"))
+    implementation(project(":core:core-arch"))
+    implementation(project(":core:core-ktx"))
+    implementation(project(":core:core-nav"))
     implementation(project(":common-resources"))
     implementation(project(":database"))
 
@@ -26,7 +26,7 @@ dependencies {
     implementation(Deps.jetpackNavUi)
     implementation(Deps.jetpackNavFragment)
 
-    testImplementation(project(":core-test"))
+    testImplementation(project(":core:core-test"))
     testImplementation(Deps.jUnit)
     testImplementation(Deps.mockK)
     androidTestImplementation(Deps.espresso)

@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core-arch"))
+    implementation(project(":core:core-arch"))
 
     implementation(Deps.kotlinStdlib)
     implementation(Deps.androidCoreKtx)
