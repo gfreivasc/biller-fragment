@@ -1,8 +1,9 @@
 package com.gabrielfv.biller.home.domain.entities
 
 data class Bill(
-    val id: Int,
+    val id: Long,
     val name: String,
-    val valueInCents: Int,
-    val fixedValue: Boolean = true
+    val paymentState: PaymentState,
+    val fixedValue: Boolean,
+    val valueInCents: Int?,
 )

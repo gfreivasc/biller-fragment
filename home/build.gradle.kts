@@ -1,5 +1,6 @@
 plugins {
     libPlugin
+    coreLibDesugar
 }
 
 android {
@@ -16,6 +17,7 @@ dependencies {
     implementation(project(":database"))
 
     implementation(Deps.kotlinStdlib)
+    implementation(Deps.kotlinxDatetime)
     implementation(Deps.androidCoreKtx)
     implementation(Deps.androidAppCompat)
     implementation(Deps.androidMaterial)

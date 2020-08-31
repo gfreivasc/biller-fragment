@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="currency_format">$ %s.%02d</string>
+    <string name="no_payment_found">No registered payment</string>
     <string name="add_bill_description">Add new Bill</string>
 </resources>
