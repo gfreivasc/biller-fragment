@@ -2,12 +2,13 @@ package com.gabrielfv.biller.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.datetime.Month
 
 @Entity
-data class Bill(
+data class Payment(
     @PrimaryKey(autoGenerate = true) val id: Long,
-    val name: String,
-    val expiryDay: Int,
-    val fixedValue: Boolean = false,
-    val valueInCents: Int? = null,
+    val billId: Long,
+    val year: Int,
+    val month: Month,
+    val valueInCents: Int,
 )
