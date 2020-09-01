@@ -15,11 +15,8 @@
  */
 package com.gabrielfv.biller.home.domain
 
-import com.gabrielfv.biller.database.entities.Bill
-import com.gabrielfv.biller.database.entities.BillHistory
-import com.gabrielfv.biller.database.entities.Payment
+import com.gabrielfv.biller.home.data.FakeSource
 import com.gabrielfv.biller.home.domain.entities.PaymentState
-import com.gabrielfv.biller.home.domain.interfaces.BillsSource
 import com.gabrielfv.biller.home.domain.mappers.PaymentStateMapper
 import io.mockk.every
 import io.mockk.mockk
@@ -77,64 +74,4 @@ class FetchBillsUseCaseTest {
         assertThat(statesByName["D"], `is`(PaymentState.PAID))
         assertThat(statesByName["E"], `is`(PaymentState.EXPIRED))
     }
-
-    class FakeSource : BillsSource {
-        var response: Response = Response.EMPTY
-
-        override suspend fun get(): List<BillHistory> {
-            return response.value
-        }
-
-        enum class Response(val value: List<BillHistory>) {
-            EMPTY(listOf<BillHistory>()),
-            UNORDERED(listOf(
-                BillHistory(
-                    bill(),
-                    listOf(
-                        payment(2000, Month.JANUARY, 1000),
-                        payment(2020, Month.FEBRUARY, 1500),
-                        payment(2010, Month.DECEMBER, 2000),
-                    )
-                )
-            )),
-            STATES(listOf(
-                BillHistory(bill(name = "A"), listOf()),
-                BillHistory(
-                    bill(name = "B", expiryDay = 3),
-                    listOf()
-                ),
-                BillHistory(
-                    bill(name = "C", expiryDay = 6),
-                    listOf()
-                ),
-                BillHistory(bill(name = "D"), listOf(payment())),
-                BillHistory(
-                    bill(name = "E"),
-                    listOf(payment(month = Month.JANUARY))
-                )
-            ))
-        }
-    }
 }
-
-private fun bill(
-    name: String = "",
-    expiryDay: Int = 1,
-    valueInCents: Int? = null
-) = Bill(
-    name = name,
-    expiryDay = expiryDay,
-    fixedValue = false,
-    valueInCents = valueInCents
-)
-
-private fun payment(
-    year: Int = 2020,
-    month: Month = Month.FEBRUARY,
-    valueInCents: Int = 0
-) = Payment(
-    billId = 0,
-    year = year,
-    month = month,
-    valueInCents = valueInCents
-)
