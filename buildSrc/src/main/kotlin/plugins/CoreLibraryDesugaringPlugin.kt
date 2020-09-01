@@ -16,24 +16,26 @@
 package plugins
 
 import com.android.build.gradle.BaseExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
+private const val DESUGARING_CONFIGURATION = "coreLibraryDesugaring"
 
 class CoreLibraryDesugaringPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        val dep = target.dependencies.add(
-            "implementation",
-            mapOf(
-                "group" to "com.android.tools",
-                "name" to "desugar_jdk_libs",
-                "version" to Versions.androidJdkDesugar
-            )
-        )
+        val config = target.configurations.run {
+            findByName(DESUGARING_CONFIGURATION)
+                ?: create(DESUGARING_CONFIGURATION)
+        }
 
-        target.configurations.findByName("implementation")
-            ?.dependencies
-            ?.add(dep)
+        config.defaultDependencies {
+            add(target.dependencies.create(Deps.coreLibDesugar))
+        }
 
         target.getAndroid<BaseExtension>().apply {
             defaultConfig {
@@ -42,6 +44,13 @@ class CoreLibraryDesugaringPlugin : Plugin<Project> {
 
             compileOptions {
                 isCoreLibraryDesugaringEnabled = true
+
+                sourceCompatibility(JavaVersion.VERSION_1_8)
+                targetCompatibility(JavaVersion.VERSION_1_8)
+            }
+
+            (this as ExtensionAware).configure<KotlinJvmOptions> {
+                jvmTarget = "1.8"
             }
         }
     }

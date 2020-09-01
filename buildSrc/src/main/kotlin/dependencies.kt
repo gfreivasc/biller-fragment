@@ -17,12 +17,13 @@ object Versions {
     const val kotlin = "1.4.0"
     const val kotlinxDatetime = "0.1.0"
 
+    const val coreLibDesugar = "1.0.9"
+
     const val androidGradlePlugin = "4.2.0-alpha08"
     const val androidCoreKtx = "1.3.1"
     const val androidSupport = "1.1.0"
     const val androidConstraint = "1.1.3"
     const val androidRecyclerView = "1.1.0"
-    const val androidJdkDesugar = "1.0.9"
 
     const val jetpackNav = "2.3.0"
 
@@ -45,6 +46,8 @@ object Classpath {
 object Deps {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     const val kotlinxDatetime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}"
+
+    const val coreLibDesugar = "com.android.tools:desugar_jdk_libs:${Versions.coreLibDesugar}"
 
     const val androidCoreKtx = "androidx.core:core-ktx:${Versions.androidCoreKtx}"
     const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.androidSupport}"
