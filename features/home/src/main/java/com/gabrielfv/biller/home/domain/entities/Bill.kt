@@ -19,6 +19,6 @@ data class Bill(
     val id: Long,
     val name: String,
     val paymentState: PaymentState,
-    val fixedValue: Boolean,
-    val valueInCents: Int?,
+    val fixedValue: Boolean = false,
+    val valueInCents: Int? = null,
 )

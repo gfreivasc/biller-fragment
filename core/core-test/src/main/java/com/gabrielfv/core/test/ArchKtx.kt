@@ -16,8 +16,23 @@
 package com.gabrielfv.core.test
 
 import android.os.Bundle
+import android.os.Parcelable
+import androidx.core.os.bundleOf
 import com.gabrielfv.core.arch.Controller
+import io.mockk.every
+import io.mockk.mockk
 
 fun Controller<*>.start(
     savedState: Bundle? = null
 ) = onActivityCreated(savedState)
+
+fun mockParcelableBundleOf(vararg pairs: Pair<String, Parcelable>) =
+    mockk<Bundle>(relaxed = true) {
+        pairs.forEach { (key, value) ->
+            every { getParcelable<Parcelable>(eq(key)) } returns value
+        }
+    }
+
+fun stateBundle(state: Parcelable) = mockParcelableBundleOf(
+    "com.gabrielfv.core.arch.STATE_REGISTRY" to state
+)

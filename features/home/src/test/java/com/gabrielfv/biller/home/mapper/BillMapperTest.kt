@@ -15,6 +15,7 @@
  */
 package com.gabrielfv.biller.home.mapper
 
+import com.gabrielfv.biller.home.domain.entities.PaymentState
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -26,11 +27,11 @@ class BillMapperTest {
     @Test
     fun correctlyMapsIdAndName() {
         val subject = BillMapper()
-        val input = DomainBill(2, "The Name", 0)
+        val input = domain(2L, "The Name")
 
         val result = subject.map(input)
 
-        assertThat(result.id, `is`(2))
+        assertThat(result.id, `is`(2L))
         assertThat(result.name, `is`("The Name"))
     }
 
@@ -38,43 +39,51 @@ class BillMapperTest {
     fun correctlyMapsCents() {
         val subject = BillMapper()
         val inputs = listOf(
-            DomainBill(0, "", 1),
-            DomainBill(0, "", 12),
-            DomainBill(0, "", 123),
+            domain(valueInCents = 1),
+            domain(valueInCents = 12),
+            domain(valueInCents = 123),
         )
 
-        val results = inputs.map(subject::map)
+        val results = inputs.map { subject.map(it) }
 
-        assertThat(results[0].valueCents, `is`(1))
-        assertThat(results[1].valueCents, `is`(12))
-        assertThat(results[2].valueCents, `is`(23))
+        assertThat(results[0].payment?.valueCents, `is`(1))
+        assertThat(results[1].payment?.valueCents, `is`(12))
+        assertThat(results[2].payment?.valueCents, `is`(23))
     }
 
     @Test
     fun correctlyAppliesDividersOnLargeNumbers() {
         val subject = BillMapper()
         val inputs = listOf(
-            DomainBill(0, "", 123400),
-            DomainBill(0, "", 1234500),
-            DomainBill(0, "", 12345600),
-            DomainBill(0, "", 123456700),
+            domain(valueInCents = 123400),
+            domain(valueInCents = 1234500),
+            domain(valueInCents = 12345600),
+            domain(valueInCents = 123456700),
         )
 
-        val results = inputs.map(subject::map)
+        val results = inputs.map { subject.map(it) }
 
-        assertThat(results[0].valueWhole, `is`("1,234"))
-        assertThat(results[1].valueWhole, `is`("12,345"))
-        assertThat(results[2].valueWhole, `is`("123,456"))
-        assertThat(results[3].valueWhole, `is`("1,234,567"))
+        assertThat(results[0].payment?.valueWhole, `is`("1,234"))
+        assertThat(results[1].payment?.valueWhole, `is`("12,345"))
+        assertThat(results[2].payment?.valueWhole, `is`("123,456"))
+        assertThat(results[3].payment?.valueWhole, `is`("1,234,567"))
     }
 
     @Test
     fun correctlyAppliesSpecifiedDivider() {
         val subject = BillMapper()
-        val input = DomainBill(0, "", 1234500)
+        val input = domain(valueInCents = 1234500)
 
         val result = subject.map(input, '-')
 
-        assertThat(result.valueWhole, `is`("12-345"))
+        assertThat(result.payment?.valueWhole, `is`("12-345"))
     }
+
+    private fun domain(
+        id: Long = 0L,
+        name: String = "",
+        paymentState: PaymentState = PaymentState.OPEN,
+        fixedValue: Boolean = true,
+        valueInCents: Int = 0,
+    ) = DomainBill(id, name, paymentState, fixedValue, valueInCents)
 }

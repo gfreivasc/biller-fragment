@@ -38,7 +38,13 @@ interface ControllerDefinition<S : Parcelable> : Destroyable {
      * it to the view. The callback receives the current state
      * to allow for state evolution logic.
      */
-    fun setState(setter: (S) -> S) {
-        setState(setter(state))
+    fun setState(setter: (S?) -> S) {
+        setState(setter(
+            try {
+                state
+            } catch (ex: IllegalStateException) {
+                null
+            }
+        ))
     }
 }

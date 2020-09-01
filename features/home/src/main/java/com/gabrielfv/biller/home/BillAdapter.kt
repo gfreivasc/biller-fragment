@@ -47,15 +47,14 @@ class BillAdapter(
             }
         }
 
-        private fun defineValueText(payment: Payment): String {
-            return when (payment) {
-                is Payment.None -> context.getString(R.string.no_payment_found)
-                is Payment.Value -> context.getString(
+        private fun defineValueText(payment: Payment?): String {
+            return payment?.let { actual ->
+                context.getString(
                     R.string.currency_format,
-                    payment.valueWhole,
-                    payment.valueCents
+                    actual.valueWhole,
+                    actual.valueCents
                 )
-            }
+            } ?: context.getString(R.string.no_payment_found)
         }
     }
 }

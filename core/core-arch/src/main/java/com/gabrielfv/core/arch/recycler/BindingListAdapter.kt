@@ -30,7 +30,7 @@ abstract class BindingListAdapter<T> : RecyclerView.Adapter<BindingListViewHolde
         diff.dispatchUpdatesTo(this)
     }
 
-    fun setIdentityMatcher(identityMatcher: ListDiffCallback.IdentityMatcher<T>?) {
+    fun setIdentityMatcher(identityMatcher: ListDiffCallback.IdentityMatcher<T>) {
         this.identityMatcher = identityMatcher
     }
 

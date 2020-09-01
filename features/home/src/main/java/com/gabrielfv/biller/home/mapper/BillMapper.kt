@@ -27,11 +27,8 @@ const val US_DIVIDER = ','
 class BillMapper {
 
     fun map(domainBill: DomainBill, divider: Char = US_DIVIDER): Bill {
-        val payment = if (domainBill.valueInCents != null) {
-            mapPaymentValue(domainBill.valueInCents, divider)
-        } else {
-            Payment.None
-        }
+        val payment: Payment? = domainBill.valueInCents
+                ?.let { mapPaymentValue(it, divider) }
 
         return Bill(
             id = domainBill.id,
@@ -41,11 +38,11 @@ class BillMapper {
         )
     }
 
-    private fun mapPaymentValue(valueInCents: Int, divider: Char): Payment.Value {
+    private fun mapPaymentValue(valueInCents: Int, divider: Char): Payment {
         val whole = valueInCents / CENTS_MULTIPLIER
         val cents = valueInCents % CENTS_MULTIPLIER
 
-        return Payment.Value(
+        return Payment(
             valueWhole = formatBig(whole, divider),
             valueCents = cents
         )

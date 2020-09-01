@@ -16,15 +16,19 @@
 package com.gabrielfv.biller.home
 
 import com.gabrielfv.biller.home.domain.FetchBillsUseCase
+import com.gabrielfv.biller.home.domain.entities.PaymentState
 import com.gabrielfv.biller.home.domain.interfaces.BillsSource
 import com.gabrielfv.biller.home.mapper.BillMapper
 import com.gabrielfv.biller.home.model.Bill
+import com.gabrielfv.biller.home.model.Payment
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
-import com.gabrielfv.core.nav.NavManager
+import com.gabrielfv.core.arch.extras.ViewProvider
 import com.gabrielfv.core.nav.NavRegistry
 import com.gabrielfv.core.nav.Routes
 import com.gabrielfv.core.test.start
+import com.gabrielfv.core.test.stateBundle
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -37,12 +41,15 @@ private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 class HomeControllerTest {
     private val mockView = mockk<View<HomeState>>(relaxed = true)
     private val mockNav = mockk<NavRegistry<Routes>>(relaxed = true)
+    private val mockUseCase = mockk<FetchBillsUseCase> {
+        coEvery { execute() } returns FakeUseCase().execute()
+    }
 
     @Test
     fun initialStateIsLoading() {
         val subject = instantiate()
 
-        val result = subject.initialState
+        val result = subject.initialize()
 
         assertThat(result.loading, `is`(true))
         assertThat(result.bills.size, `is`(0))
@@ -54,7 +61,7 @@ class HomeControllerTest {
         val subject = instantiate()
         val expected = HomeState(
             false,
-            listOf(Bill(1, "foo", "10", 0))
+            listOf(viewPaid(), viewExpired())
         )
 
         subject.onResume()
@@ -68,7 +75,7 @@ class HomeControllerTest {
         val subject = instantiate()
         val expected = HomeState(
             false,
-            listOf(Bill(1, "foo", "10", 0))
+            listOf(viewPaid(), viewExpired())
         )
 
         subject.onResume()
@@ -81,7 +88,7 @@ class HomeControllerTest {
         val subject = instantiate()
         val expected = HomeState(
             false,
-            listOf(Bill(1, "foo", "10", 0))
+            listOf(viewPaid(), viewExpired())
         )
 
         subject.start()
@@ -89,19 +96,48 @@ class HomeControllerTest {
         verify { mockView.updateState(eq(expected)) }
     }
 
+    @Test
+    fun restoresSavedStateWhenPresent() {
+        val subject = instantiate()
+        val expected = HomeState(
+            false,
+            listOf(viewExpired(), viewPaid(), viewExpired())
+        )
+        val savedState = stateBundle(expected)
+
+        subject.start(savedState)
+
+        verify { mockView.updateState(eq(expected)) }
+    }
+
     private fun instantiate() = HomeController(
-        fetchBillsUseCase = FetchBillsUseCase(FakeSource()),
+        fetchBillsUseCase = mockUseCase,
         coroutinesExecutor = InstantCoroutinesExecutor(),
         mapper = BillMapper(),
         nav = mockNav,
-        viewProvider = { mockView }
+        viewProvider = ViewProvider { mockView }
     )
 
-    class FakeSource : BillsSource {
-        override suspend fun get(): List<DomainBill> {
+    class FakeUseCase {
+        fun execute(): List<DomainBill> {
             return listOf(
-                DomainBill(1, "foo", 1000)
+                DomainBill(1, "foo", PaymentState.PAID, valueInCents = 1000),
+                DomainBill(2, "bar", PaymentState.EXPIRED)
             )
         }
     }
+
+    private fun viewPaid() = Bill(
+        id = 1,
+        name = "foo",
+        payment = Payment("10", 0),
+        state = PaymentState.PAID,
+    )
+
+    private fun viewExpired() = Bill(
+        id = 2,
+        name = "bar",
+        payment = null,
+        state = PaymentState.EXPIRED,
+    )
 }
