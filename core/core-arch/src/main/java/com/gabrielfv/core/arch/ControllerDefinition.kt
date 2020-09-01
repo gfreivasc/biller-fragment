@@ -18,7 +18,10 @@ package com.gabrielfv.core.arch
 import android.os.Parcelable
 
 /**
- * Basic functional definitions for Controllers.
+ * Basic functional definitions for Controllers. This should
+ * be used as a guideline for creating controller backbones
+ * and is not intended for implementation on client code
+ * unless the goal is to create a controller abstraction.
  *
  * Each controller must have a state associated with it,
  * that can be derived from a state machine of any nature.
@@ -27,6 +30,7 @@ import android.os.Parcelable
  */
 interface ControllerDefinition<S : Parcelable> : Destroyable {
     val view: View<S>
+    val initialState: S? get() = null
     val state: S
 
     fun setState(state: S)
@@ -38,13 +42,32 @@ interface ControllerDefinition<S : Parcelable> : Destroyable {
      * it to the view. The callback receives the current state
      * to allow for state evolution logic.
      */
-    fun setState(setter: (S?) -> S) {
-        setState(setter(
-            try {
-                state
-            } catch (ex: IllegalStateException) {
-                null
-            }
-        ))
+    fun setState(setter: (S) -> S) {
+        setState(setter(state))
+    }
+
+    /**
+     * Responsible for starting the lifecycle of a new controller
+     * and setting its initial [state] value.
+     */
+    fun onInitialize(initialState: S?) {
+        if (initialState != null) {
+            setState(initialState)
+        }
+    }
+
+    fun initialize() {
+        onInitialize(initialState)
+        try {
+            state
+        } catch (ex: Exception) {
+            throw IllegalStateException(
+                """ [${this::class.java.simpleName}.onInitialize() does not
+                    guarantee state integrity. Make sure to either set state
+                    via [setState(${state::class.java.simpleName})] or by
+                    calling [super.onInitialize()] with a set [initialState]
+                """.trimIndent().replace('\n', ' ')
+            )
+        }
     }
 }

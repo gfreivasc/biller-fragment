@@ -21,12 +21,10 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.gabrielfv.biller.database.entities.Bill
 import com.gabrielfv.biller.database.entities.BillHistory
+import com.gabrielfv.biller.database.entities.Payment
 
 @Dao
 interface BillsDao {
-
-    @Query("SELECT * FROM bill")
-    suspend fun fetch(): List<Bill>
 
     @Insert
     suspend fun insert(vararg newBill: Bill)
@@ -34,4 +32,7 @@ interface BillsDao {
     @Transaction
     @Query("SELECT * FROM bill")
     suspend fun fetchWithHistory(): List<BillHistory>
+
+    @Insert
+    suspend fun addPayment(vararg payment: Payment)
 }

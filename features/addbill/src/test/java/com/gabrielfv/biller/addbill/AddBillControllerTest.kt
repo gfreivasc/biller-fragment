@@ -21,6 +21,7 @@ import com.gabrielfv.biller.addbill.mappers.NewBillMapper
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
 import com.gabrielfv.core.test.resources.spyingRes
+import com.gabrielfv.core.test.start
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
@@ -33,17 +34,26 @@ class AddBillControllerTest {
     private val mockView = mockk<View<AddBillState>>(relaxed = true)
 
     @Test
+    fun initializesWithoutErrorsAndNotFixedValue() {
+        val subject = spyingRes(instantiate())
+        val expected = mockState(showValueField = false)
+
+        subject.start()
+
+        verify { mockView.updateState(expected) }
+    }
+
+    @Test
     fun validateFebruaryUnsafeDayReturnsCorrectMessage() {
         val subject = spyingRes(instantiate()) {
             R.string.you_nuts_man toString "Feb Error"
         }
+        subject.start()
         val expected = mockState(expiryDayError = "Feb Error")
 
         subject.addBill(AddBillAction("Lala", "29", false))
 
-        verify {
-            mockView.updateState(eq(expected))
-        }
+        verify { mockView.updateState(eq(expected)) }
     }
 
     @Test
@@ -51,13 +61,12 @@ class AddBillControllerTest {
         val subject = spyingRes(instantiate()) {
             R.string.invalid_month_day toString "Month Error"
         }
+        subject.start()
         val expected = mockState(expiryDayError = "Month Error")
 
         subject.addBill(AddBillAction("Lala", "31", false))
 
-        verify {
-            mockView.updateState(eq(expected))
-        }
+        verify { mockView.updateState(eq(expected)) }
     }
 
     @Test
@@ -65,13 +74,12 @@ class AddBillControllerTest {
         val subject = spyingRes(instantiate()) {
             R.string.field_blank_error toString  "Empty"
         }
+        subject.start()
         val expected = mockState(nameError = "Empty")
 
         subject.addBill(AddBillAction("", "5", isFixedValue = false))
 
-        verify {
-            mockView.updateState(eq(expected))
-        }
+        verify { mockView.updateState(eq(expected)) }
     }
 
     @Test
@@ -79,13 +87,12 @@ class AddBillControllerTest {
         val subject = spyingRes(instantiate()) {
             R.string.field_blank_error toString "Empty"
         }
+        subject.start()
         val expected = mockState(fixedValueError = "Empty")
 
         subject.addBill(AddBillAction("Lala", "5", true))
 
-        verify {
-            mockView.updateState(eq(expected))
-        }
+        verify { mockView.updateState(eq(expected)) }
     }
 
     private fun instantiate() = AddBillController(

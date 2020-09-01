@@ -38,15 +38,12 @@ class AddBillController(
     viewProvider: ViewProvider<AddBillController, AddBillState> = ViewProvider { AddBillView(it) }
 ) : Controller<AddBillState>() {
     override val view: View<AddBillState> = viewProvider.get(this)
-
-    override fun initialize(): AddBillState {
-        return AddBillState(
-            false,
-            null,
-            null,
-            null,
-        )
-    }
+    override val initialState = AddBillState(
+        false,
+        null,
+        null,
+        null,
+    )
 
     fun addBill(action: AddBillAction) {
         val newBill = mapper.map(action)

@@ -21,7 +21,7 @@ import kotlinx.datetime.Month
 
 @Entity
 data class Payment(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val billId: Long,
     val year: Int,
     val month: Month,

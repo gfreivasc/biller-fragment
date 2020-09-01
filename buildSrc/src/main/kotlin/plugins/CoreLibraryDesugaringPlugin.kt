@@ -33,9 +33,8 @@ class CoreLibraryDesugaringPlugin : Plugin<Project> {
                 ?: create(DESUGARING_CONFIGURATION)
         }
 
-        config.defaultDependencies {
-            add(target.dependencies.create(Deps.coreLibDesugar))
-        }
+        config.dependencies
+                .add(target.dependencies.create(Deps.coreLibDesugar))
 
         target.getAndroid<BaseExtension>().apply {
             defaultConfig {

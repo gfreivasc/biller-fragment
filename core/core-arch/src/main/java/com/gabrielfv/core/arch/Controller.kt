@@ -36,13 +36,6 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
     override val state: S get() = engine.state
 
     /**
-     * Initialization of view state and controller logic. It's
-     * called every time fragment is initialized without a saved
-     * state.
-     */
-    abstract fun initialize(): S
-
-    /**
      * Registers objects with a `.destroy()` routine to be called
      * upon controller's destruction. The same instance can be safely
      * registered more than once, since any call will simply be ignored
@@ -68,7 +61,11 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val saved = savedInstanceState?.getParcelable<S>(STATE_REGISTRY)
-        setState(saved ?: initialize())
+        if (saved != null) {
+            setState(saved)
+        } else {
+            initialize()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

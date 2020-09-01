@@ -38,20 +38,19 @@ class HomeController(
 ) : Controller<HomeState>() {
     override val view: View<HomeState> = viewProvider.get(this)
 
-    override fun initialize(): HomeState {
-        return loadingState()
-            .also { fetchBills() }
+    override fun onInitialize(initialState: HomeState?) {
+        fetchBills()
     }
 
     override fun onResume() {
         super.onResume()
         if (nav.read<Boolean>(NavRegistry.BILLS_MODIFIED) == true) {
-            setState { loadingState() }
             fetchBills()
         }
     }
 
     private fun fetchBills() {
+        setState(loadingState())
         coroutinesExecutor.execute {
             val bills = fetchBillsUseCase
                 .execute()

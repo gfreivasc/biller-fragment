@@ -28,10 +28,7 @@ import com.gabrielfv.core.nav.NavRegistry
 import com.gabrielfv.core.nav.Routes
 import com.gabrielfv.core.test.start
 import com.gabrielfv.core.test.stateBundle
-import io.mockk.coEvery
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -48,11 +45,14 @@ class HomeControllerTest {
     @Test
     fun initialStateIsLoading() {
         val subject = instantiate()
+        val expected = HomeState(true, listOf())
 
-        val result = subject.initialize()
+        subject.start()
 
-        assertThat(result.loading, `is`(true))
-        assertThat(result.bills.size, `is`(0))
+        verify(ordering = Ordering.ORDERED) {
+            mockView.updateState(eq(expected))
+            mockView.updateState(any())
+        }
     }
 
     @Test
