@@ -16,6 +16,7 @@
 package com.gabrielfv.biller.home.domain
 
 import com.gabrielfv.biller.database.entities.BillHistory
+import com.gabrielfv.biller.database.entities.Payment
 import com.gabrielfv.biller.home.data.LocalBillsSource
 import com.gabrielfv.biller.home.domain.entities.Bill
 import com.gabrielfv.biller.home.domain.interfaces.BillsSource
@@ -31,11 +32,9 @@ class FetchBillsUseCase(
     }
 
     private fun mapData(billHistory: BillHistory): Bill {
-        // There's no guarantee that list's last is actually the latest
-        // payment. Probably a good idea to enforce it on DB query (faster).
         val bill = billHistory.bill
 
-        val latestPayment = billHistory.paymentHistory.lastOrNull()
+        val latestPayment = getLatestPayment(billHistory)
         val paymentState = paymentStateMapper.map(
             latestPayment?.year,
             latestPayment?.month,
@@ -55,5 +54,9 @@ class FetchBillsUseCase(
             fixedValue = bill.fixedValue,
             valueInCents = valueInCents
         )
+    }
+
+    private fun getLatestPayment(billHistory: BillHistory): Payment? {
+        return billHistory.paymentHistory.maxOrNull()
     }
 }

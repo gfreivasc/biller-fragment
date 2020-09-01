@@ -47,7 +47,8 @@ class PaymentStateMapper(
         currentYear: Int,
         currentMonth: Month
     ): Boolean {
-        return if (lastYear == currentYear) currentMonth - 1 > lastMonth
+        return if (lastYear == null || lastMonth == null) false
+        else if (lastYear == currentYear) currentMonth - 1 > lastMonth
         else lastMonth != Month.DECEMBER || currentMonth != Month.JANUARY
     }
 }

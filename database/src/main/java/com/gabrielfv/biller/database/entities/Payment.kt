@@ -26,4 +26,9 @@ data class Payment(
     val year: Int,
     val month: Month,
     val valueInCents: Int,
-)
+) : Comparable<Payment> {
+
+    override fun compareTo(other: Payment): Int {
+        return (year - other.year) * 12 + (month.ordinal - other.month.ordinal)
+    }
+}
