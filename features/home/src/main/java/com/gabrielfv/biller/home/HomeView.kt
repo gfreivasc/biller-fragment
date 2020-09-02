@@ -23,7 +23,7 @@ import com.gabrielfv.core.arch.recycler.ItemInteraction
 
 class HomeView(
     override val controller: HomeController
-) : BindingView<HomeViewBinding, HomeState>(controller, R.layout.home_view) {
+) : BindingView<HomeViewBinding, HomeState>(R.layout.home_view) {
     private val adapter = BillAdapter(ItemInteraction.Click { bill ->
         controller.billClick(bill)
     })

@@ -22,7 +22,7 @@ import com.gabrielfv.core.arch.BindingView
 
 class AddBillView(
     override val controller: AddBillController
-) : BindingView<AddBillViewBinding, AddBillState>(controller, R.layout.add_bill_view) {
+) : BindingView<AddBillViewBinding, AddBillState>(R.layout.add_bill_view) {
 
     override fun bind(view: View): AddBillViewBinding {
         return AddBillViewBinding.bind(view)
@@ -39,7 +39,11 @@ class AddBillView(
                 name = inputName.text.toString(),
                 expiryDay = inputExpiryDay.text.toString(),
                 isFixedValue = isFixed,
-                fixedValue = if (isFixed) inputFixedValue.text.toString() else null
+                fixedValue = if (isFixed) {
+                    inputFixedValue.text.toString()
+                } else {
+                    null
+                }
             ))
         }
     }

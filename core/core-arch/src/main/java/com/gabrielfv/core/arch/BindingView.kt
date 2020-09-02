@@ -38,7 +38,6 @@ import androidx.viewbinding.ViewBinding
  * of its generated implementations.
  */
 abstract class BindingView<B : ViewBinding, S : Parcelable>(
-    override val controller: Controller<S>,
     @LayoutRes val layoutId: Int
 ) : View<S>, Destroyable {
     private var _binding: B? = null

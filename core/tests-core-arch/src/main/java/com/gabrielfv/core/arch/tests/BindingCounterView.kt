@@ -20,7 +20,7 @@ import com.gabrielfv.core.arch.tests.databinding.CounterViewBinding
 
 class BindingCounterView(
     override val controller: DefaultCounterController
-) : BindingView<CounterViewBinding, CounterState>(controller, R.layout.counter_view) {
+) : BindingView<CounterViewBinding, CounterState>(R.layout.counter_view) {
 
     override fun bind(view: android.view.View): CounterViewBinding {
         return CounterViewBinding.bind(view)
