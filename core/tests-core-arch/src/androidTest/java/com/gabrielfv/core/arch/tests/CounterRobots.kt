@@ -25,7 +25,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 class CounterSetup {
 
     fun start() {
-        launchFragmentInContainer<CounterController>()
+        launchFragmentInContainer<InitStateSetController>()
     }
 }
 

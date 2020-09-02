@@ -16,19 +16,20 @@
 package com.gabrielfv.core.arch.tests.counter
 
 import com.gabrielfv.core.arch.View
-import com.gabrielfv.core.arch.tests.CounterController
 import com.gabrielfv.core.arch.tests.CounterState
+import com.gabrielfv.core.arch.tests.StateSettingInitializeController
 import com.gabrielfv.core.test.start
+import com.gabrielfv.core.test.stateBundle
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
 
-class CounterControllerTest {
+class StateSettingInitializeControllerTest {
     private val view = mockk<View<CounterState>>(relaxed = true)
 
     @Test
     fun stateInitializesWithCount0() {
-        val subject = CounterController { view }
+        val subject = StateSettingInitializeController { view }
 
         subject.start()
 
@@ -37,7 +38,7 @@ class CounterControllerTest {
 
     @Test
     fun incIncrementsCounter() {
-        val subject = CounterController { view }
+        val subject = StateSettingInitializeController { view }
         subject.start()
 
         subject.inc()
@@ -52,7 +53,7 @@ class CounterControllerTest {
 
     @Test
     fun decDecrementsCounter() {
-        val subject = CounterController { view }
+        val subject = StateSettingInitializeController { view }
         subject.start()
         subject.inc()
         subject.inc()
@@ -67,5 +68,14 @@ class CounterControllerTest {
             view.updateState(eq(CounterState(1)))
             view.updateState(eq(CounterState(0)))
         }
+    }
+
+    @Test
+    fun stateIsRestoredWhenSaved() {
+        val subject = StateSettingInitializeController { view }
+
+        subject.start(stateBundle(CounterState(4)))
+
+        verify { view.updateState(eq(CounterState(4))) }
     }
 }

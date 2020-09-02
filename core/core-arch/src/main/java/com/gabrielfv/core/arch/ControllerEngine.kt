@@ -38,7 +38,7 @@ internal class ControllerEngine<S : Parcelable>(
             _state!!
         } catch (ex: NullPointerException) {
             throw IllegalStateException("""
-                Attempted to access ${this::class.java.simpleName} state prior to setting it.
+                Attempted to access controller state prior to setting it.
                 Make sure that your state is set before trying to access it.
             """.trimIndent())
         }

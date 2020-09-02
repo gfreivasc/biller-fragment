@@ -55,19 +55,20 @@ interface ControllerDefinition<S : Parcelable> : Destroyable {
             setState(initialState)
         }
     }
+}
 
-    fun initialize() {
-        onInitialize(initialState)
-        try {
-            state
-        } catch (ex: Exception) {
-            throw IllegalStateException(
-                """ [${this::class.java.simpleName}.onInitialize() does not
-                    guarantee state integrity. Make sure to either set state
-                    via [setState(${state::class.java.simpleName})] or by
-                    calling [super.onInitialize()] with a set [initialState]
-                """.trimIndent().replace('\n', ' ')
-            )
-        }
+internal fun <S : Parcelable> ControllerDefinition<S>.initialize() {
+    onInitialize(initialState)
+    try {
+        state
+    } catch (ex: Exception) {
+        throw IllegalStateException(
+            """
+                [${this::class.java.simpleName}.onInitialize()] does not
+                guarantee state integrity. Make sure to either set state
+                via [setState()] or by calling [super.onInitialize()] with
+                a set [initialState]
+            """.trimIndent()
+        )
     }
 }
