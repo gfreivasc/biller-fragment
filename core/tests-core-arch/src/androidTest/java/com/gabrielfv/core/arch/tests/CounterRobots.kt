@@ -15,6 +15,7 @@
  */
 package com.gabrielfv.core.arch.tests
 
+import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -22,10 +23,10 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 
-class CounterSetup {
+class CounterSetup(private val factory: FragmentFactory? = null) {
 
     fun start() {
-        launchFragmentInContainer<InitStateSetController>()
+        launchFragmentInContainer<DefaultCounterController>(factory = factory)
     }
 }
 

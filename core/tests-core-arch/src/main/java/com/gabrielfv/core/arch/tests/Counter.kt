@@ -31,6 +31,14 @@ abstract class CounterController : Controller<CounterState>() {
     fun dec() = setState { CounterState(it.count - 1) }
 }
 
+class DefaultCounterController(
+    viewProvider: ViewProvider<DefaultCounterController, CounterState> =
+        ViewProvider { CounterView(it) }
+) : CounterController() {
+    override val view: View<CounterState> = viewProvider.get(this)
+    override val initialState = CounterState(0)
+}
+
 class CounterView(
     override val controller: CounterController
 ) : View<CounterState> {
@@ -42,7 +50,10 @@ class CounterView(
     ): android.view.View {
         return inflater
                 .inflate(R.layout.counter_view, root, false)
-                .also { view = it }
+                .also { view ->
+                    this.view = view
+                    onStart()
+                }
     }
 
     override fun onStart() {
@@ -57,6 +68,3 @@ class CounterView(
 
 @Parcelize
 data class CounterState(val count: Int) : Parcelable
-
-fun <C : CounterController> C.providerFor(): ViewProvider<C, CounterState> =
-    ViewProvider { controller -> CounterView(controller) }
