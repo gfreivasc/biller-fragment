@@ -59,6 +59,7 @@ internal class AndroidBasePlugin : Plugin<Project> {
 
                 getByName("debug") {
                     minifyEnabled(Android.debugMinify)
+                    isTestCoverageEnabled = Android.testCoverageEnabled
                 }
             }
 

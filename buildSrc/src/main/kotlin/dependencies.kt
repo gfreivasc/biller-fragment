@@ -36,11 +36,14 @@ object Versions {
     const val fragmentTesting = "1.2.4"
     const val espressoJUnit = "1.1.1"
     const val espresso = "3.2.0"
+
+    const val jacoco = "0.8.5"
 }
 
 object Classpath {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
+    const val jacocoCore = "org.jacoco:org.jacoco.core:${Versions.jacoco}"
 }
 
 object Deps {

@@ -112,7 +112,7 @@ class BindingViewTest {
 
     class VoidBindingView(
         override val controller: TestController
-    ) : BindingView<ViewBinding, TestState>(controller, 0) {
+    ) : BindingView<ViewBinding, TestState>(0) {
 
         override fun bind(view: android.view.View): ViewBinding {
             return Companion.binding

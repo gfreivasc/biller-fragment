@@ -13,17 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-internal object Android {
-    const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    const val compileSdkVersion = 29
-    const val buildToolsVersion = "29.0.3"
-    const val minSdkVersion = 16
-    const val targetSdkVersion = 29
+package plugins.jacoco
 
-    // release
-    const val releaseMinify = true
-
-    // debug
-    const val debugMinify = false
-    const val testCoverageEnabled = true
-}
+data class ReportConfiguration(var isEnabled: Boolean)

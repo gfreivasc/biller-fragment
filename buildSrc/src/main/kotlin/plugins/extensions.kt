@@ -15,11 +15,30 @@
  */
 package plugins
 
+import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.api.BaseVariant
+import org.gradle.api.DomainObjectSet
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.tasks.TaskContainer
 
 inline fun <reified Ex : BaseExtension> Project.getAndroid(): Ex = try {
     extensions.findByType(Ex::class.java)!!
 } catch (ex: NullPointerException) {
-    throw IllegalArgumentException("Getting android extension on non-android module")
+    throw IllegalArgumentException(
+        "Getting android extension on non-android module"
+    )
 }
+
+inline fun <reified T : Task> TaskContainer.getOrCreate(name: String): T {
+    return findByName(name) as? T ?: create(name, T::class.java)
+}
+
+val BaseExtension.variants: DomainObjectSet<out BaseVariant> get() =
+    if (this is LibraryExtension) {
+        libraryVariants
+    } else {
+        (this as AppExtension).applicationVariants
+    }

@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(Classpath.androidGradlePlugin)
         classpath(Classpath.kotlinGradlePlugin)
+        classpath(Classpath.jacocoCore)
     }
 }
 

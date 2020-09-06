@@ -1,6 +1,7 @@
 plugins {
     libPlugin
     coreLibDesugar
+    jacocoAndroid
 }
 
 android {

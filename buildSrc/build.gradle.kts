@@ -11,10 +11,12 @@ repositories {
 dependencies {
     val agpVer = "4.2.0-alpha08"
     val kotlinVer = "1.4.0"
+    val jacocoVer = "0.8.5"
     implementation(gradleApi())
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVer")
     implementation("com.android.tools.build:gradle:$agpVer")
+    implementation("org.jacoco:org.jacoco.core:$jacocoVer")
 }
 
 gradlePlugin {
@@ -23,19 +25,20 @@ gradlePlugin {
             id = "appPlugin"
             implementationClass = "plugins.AndroidAppPlugin"
         }
-    }
 
-    plugins {
         create("libPlugin") {
             id = "libPlugin"
             implementationClass = "plugins.AndroidLibPlugin"
         }
-    }
 
-    plugins {
         create("coreLibDesugar") {
             id = "coreLibDesugar"
             implementationClass = "plugins.CoreLibraryDesugaringPlugin"
+        }
+
+        create("jacocoAndroid") {
+            id = "jacocoAndroid"
+            implementationClass = "plugins.jacoco.JacocoCoveragePlugin"
         }
     }
 }

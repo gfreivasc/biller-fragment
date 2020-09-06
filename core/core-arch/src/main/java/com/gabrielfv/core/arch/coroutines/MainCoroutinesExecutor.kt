@@ -15,7 +15,6 @@
  */
 package com.gabrielfv.core.arch.coroutines
 
-import com.gabrielfv.core.arch.Destroyable
 import kotlinx.coroutines.*
 
 class MainCoroutinesExecutor : CoroutinesExecutor {
