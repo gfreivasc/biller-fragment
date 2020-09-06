@@ -35,12 +35,9 @@ import plugins.variants
 class JacocoCoveragePlugin : Plugin<Project> {
     companion object {
         const val EXTENSION_NAME = "jacocoCoverage"
-        const val NO_VARIANT_TASK_NAME = "jacocoAndroidTestReport"
         const val BASE_TASK_NAME = "jacocoTestReport"
         const val TASK_GROUP = "Reporting"
     }
-
-    private val logger: Logger = getLogger(javaClass)
 
     override fun apply(target: Project) {
         with(target.plugins) {
@@ -102,13 +99,11 @@ class JacocoCoveragePlugin : Plugin<Project> {
         execData: List<String>,
         extension: JacocoCoverageExtension,
         testTask: Test,
-        variant: BaseVariant? = null
+        variant: BaseVariant
     ): JacocoReport {
-        val name = variant?.name?.let { name ->
-            "jacoco${name.capitalize()}TestReport"
-        } ?: NO_VARIANT_TASK_NAME
-
-        return tasks.create<JacocoReport>(name) {
+        return tasks.create<JacocoReport>(
+            "jacoco${variant.name.capitalize()}TestReport"
+        ) {
             group = TASK_GROUP
             dependsOn(testTask)
 
