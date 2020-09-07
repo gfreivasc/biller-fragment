@@ -11,3 +11,6 @@ jobs:
       - checkout
       - run:
           command: ./gradlew test jacocoRootReport buildDebug
+      - store_artifacts:
+          path: build/reports
+          destination: reports
