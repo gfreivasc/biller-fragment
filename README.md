@@ -1,5 +1,7 @@
 # Biller (with Fragments)
 
+[![CI Status](https://circleci.com/gh/gfreivasc/biller-fragment.svg?style=svg)](https://app.circleci.com/pipelines/github/gfreivasc/biller-fragment)
+
 Under construction example of using fragments as controllers while aided by own tooling.
 
 License
