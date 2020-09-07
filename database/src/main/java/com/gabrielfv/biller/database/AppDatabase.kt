@@ -29,6 +29,7 @@ import com.gabrielfv.biller.database.entities.Payment
         Payment::class
     ],
     version = 1,
+    exportSchema = false
 )
 @TypeConverters(MonthConverter::class)
 internal abstract class AppDatabase : RoomDatabase() {

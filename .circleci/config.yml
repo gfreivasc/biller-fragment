@@ -10,4 +10,4 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ./gradlew test jacocoRootReport build
+          command: ./gradlew test jacocoRootReport buildDebug
