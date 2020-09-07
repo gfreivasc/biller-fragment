@@ -1,5 +1,6 @@
 plugins {
     libPlugin
+    jacocoAndroid
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:core-arch"))
+    api(project(":core:core-arch"))
     implementation(project(":common-resources"))
 
     implementation(Deps.kotlinStdlib)

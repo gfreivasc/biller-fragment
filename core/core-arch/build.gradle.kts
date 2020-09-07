@@ -1,5 +1,6 @@
 plugins {
     libPlugin
+    jacocoAndroid
 }
 
 dependencies {

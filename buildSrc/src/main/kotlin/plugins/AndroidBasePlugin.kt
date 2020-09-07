@@ -43,6 +43,10 @@ internal class AndroidBasePlugin : Plugin<Project> {
                 testInstrumentationRunner(Android.testInstrumentationRunner)
             }
 
+            testOptions {
+                animationsDisabled = true
+            }
+
             compileOptions {
                 sourceCompatibility(JavaVersion.VERSION_1_8)
                 targetCompatibility(JavaVersion.VERSION_1_8)

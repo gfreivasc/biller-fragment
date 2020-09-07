@@ -71,6 +71,7 @@ object Deps {
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val mockK = "io.mockk:mockk:${Versions.mockK}"
+    const val mockKAndroid = "io.mockk:mockk-android:${Versions.mockK}"
     const val espressoJUnit = "androidx.test.ext:junit:${Versions.espressoJUnit}"
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"

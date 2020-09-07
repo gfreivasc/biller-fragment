@@ -60,9 +60,15 @@ class JacocoCoveragePlugin : Plugin<Project> {
 
         target.afterEvaluate {
             getAndroid<BaseExtension>().variants.forEach { variant ->
-                val reportTask = variant
-                        .createVariantReportTask(target, extension)
-                baseTask.dependsOn(reportTask)
+                // for some reason reporting both debug and release variants
+                // is making reports collide upon aggregation. Perhaps modify
+                // this to unify reporting and verify if collision does not
+                // happen.
+                if (variant.name != "debug") {
+                    val reportTask = variant
+                            .createVariantReportTask(target, extension)
+                    baseTask.dependsOn(reportTask)
+                }
             }
         }
     }
@@ -83,6 +89,7 @@ class JacocoCoveragePlugin : Plugin<Project> {
 
         testTask.configure<JacocoTaskExtension> {
             isIncludeNoLocationClasses = extension.includesNoLocationClasses
+            excludes = listOf("jdk.internal.*")
         }
 
         return project.createReportTask(
