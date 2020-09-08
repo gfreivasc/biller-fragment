@@ -12,6 +12,4 @@ jobs:
       - run:
           command: ./gradlew test jacocoRootReport buildDebug
       - run:
-          command: >-
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java -r
-              build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh) report
