@@ -15,11 +15,14 @@
  */
 package com.gabrielfv.core.arch.navigation
 
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 
 /**
- * Class
+ * Defines visibility for nav controller
  */
 interface NavigationAware {
-    var navController: NavHostController?
+    /**
+     * Accessor to class' nav controller
+     */
+    var navController: NavController?
 }

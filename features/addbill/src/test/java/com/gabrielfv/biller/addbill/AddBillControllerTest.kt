@@ -15,6 +15,7 @@
  */
 package com.gabrielfv.biller.addbill
 
+import androidx.navigation.NavController
 import com.gabrielfv.biller.addbill.domain.AddBillUseCase
 import com.gabrielfv.biller.addbill.domain.validators.NewBillValidator
 import com.gabrielfv.biller.addbill.mappers.NewBillMapper
@@ -28,10 +29,11 @@ import org.junit.Test
 
 class AddBillControllerTest {
     private val validator = NewBillValidator()
-    private val useCase = mockk<AddBillUseCase>()
+    private val useCase = mockk<AddBillUseCase>(relaxed = true)
     private val executor = InstantCoroutinesExecutor()
     private val mapper = NewBillMapper()
     private val mockView = mockk<View<AddBillState>>(relaxed = true)
+    private val mockNavController = mockk<NavController>(relaxed = true)
 
     @Test
     fun initializesWithoutErrorsAndNotFixedValue() {
@@ -93,6 +95,17 @@ class AddBillControllerTest {
         subject.addBill(AddBillAction("Lala", "5", true))
 
         verify { mockView.updateState(eq(expected)) }
+    }
+
+    @Test
+    fun addBillWithoutErrorsPopsBackNavigation() {
+        val subject = instantiate()
+        subject.navController = mockNavController
+        subject.start()
+
+        subject.addBill(AddBillAction("A", "5", false))
+
+        verify { mockNavController.popBackStack() }
     }
 
     private fun instantiate() = AddBillController(

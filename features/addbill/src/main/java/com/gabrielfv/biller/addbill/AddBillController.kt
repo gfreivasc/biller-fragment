@@ -15,11 +15,9 @@
  */
 package com.gabrielfv.biller.addbill
 
-import androidx.navigation.fragment.findNavController
 import com.gabrielfv.biller.addbill.domain.AddBillUseCase
 import com.gabrielfv.biller.addbill.domain.entities.NewBill
 import com.gabrielfv.biller.addbill.domain.entities.errors.ExpiryDayError
-import com.gabrielfv.biller.addbill.domain.validators.ExpiryDayValidator
 import com.gabrielfv.biller.addbill.domain.map
 import com.gabrielfv.biller.addbill.domain.validators.NewBillValidator
 import com.gabrielfv.biller.addbill.mappers.NewBillMapper
@@ -28,7 +26,6 @@ import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.CoroutinesExecutor
 import com.gabrielfv.core.arch.coroutines.MainCoroutinesExecutor
 import com.gabrielfv.core.arch.extras.ViewProvider
-import kotlin.math.exp
 
 class AddBillController(
     private val newBillValidator: NewBillValidator = NewBillValidator(),

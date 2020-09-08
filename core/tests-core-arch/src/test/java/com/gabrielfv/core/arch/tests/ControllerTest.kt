@@ -28,6 +28,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.android.parcel.Parcelize
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import java.lang.IllegalStateException
@@ -98,11 +99,17 @@ class ControllerTest {
         assertThat(result, `is`(navController))
     }
 
-    @Test(expected = IllegalStateException::class)
+    @Test
     fun requestNavControllerWithoutSetControllerShouldDefault() {
         val controller = TestController()
 
-        controller.findNavController()
+        val result = try {
+            controller.findNavController()
+        } catch (ex: Exception) {
+            ex
+        }
+
+        assertThat(result, instanceOf(IllegalStateException::class.java))
     }
 
     class TestController : Controller<TestState>() {
