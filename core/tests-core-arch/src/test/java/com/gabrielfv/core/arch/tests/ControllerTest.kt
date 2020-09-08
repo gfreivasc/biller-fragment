@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavHostController
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.Destroyable
 import com.gabrielfv.core.arch.View
@@ -26,7 +27,10 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.android.parcel.Parcelize
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
+import java.lang.IllegalStateException
 
 private const val STATE_REG = "com.gabrielfv.core.arch.STATE_REGISTRY"
 
@@ -81,6 +85,24 @@ class ControllerTest {
         controller.onDestroy()
 
         verify { destroyable.destroy() }
+    }
+
+    @Test
+    fun requestNavControllerReturnsSetController() {
+        val navController = mockk<NavHostController>()
+        val controller = TestController()
+        controller.navController = navController
+
+        val result = controller.findNavController()
+
+        assertThat(result, `is`(navController))
+    }
+
+    @Test(expected = IllegalStateException::class)
+    fun requestNavControllerWithoutSetControllerShouldDefault() {
+        val controller = TestController()
+
+        controller.findNavController()
     }
 
     class TestController : Controller<TestState>() {

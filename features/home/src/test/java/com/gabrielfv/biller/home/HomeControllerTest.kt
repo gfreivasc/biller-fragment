@@ -15,6 +15,8 @@
  */
 package com.gabrielfv.biller.home
 
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
 import com.gabrielfv.biller.home.domain.FetchBillsUseCase
 import com.gabrielfv.biller.home.domain.entities.PaymentState
 import com.gabrielfv.biller.home.domain.interfaces.BillsSource
@@ -38,9 +40,13 @@ private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 class HomeControllerTest {
     private val mockView = mockk<View<HomeState>>(relaxed = true)
     private val mockNav = mockk<NavRegistry<Routes>>(relaxed = true)
+    private val mockRoutes = mockk<Routes> {
+        every { addBill } returns 12
+    }
     private val mockUseCase = mockk<FetchBillsUseCase> {
         coEvery { execute() } returns FakeUseCase().execute()
     }
+    private val mockNavHostController = mockk<NavHostController>(relaxed = true)
 
     @Test
     fun initialStateIsLoading() {
@@ -110,12 +116,23 @@ class HomeControllerTest {
         verify { mockView.updateState(eq(expected)) }
     }
 
+    @Test
+    fun addBillNavigatesToAppropriatePlace() {
+        every { mockNav.routes } returns mockRoutes
+        val subject = instantiate()
+        subject.navController = mockNavHostController
+
+        subject.addBill()
+
+        verify { mockNavHostController.navigate(eq(12)) }
+    }
+
     private fun instantiate() = HomeController(
         fetchBillsUseCase = mockUseCase,
         coroutinesExecutor = InstantCoroutinesExecutor(),
         mapper = BillMapper(),
         nav = mockNav,
-        viewProvider = ViewProvider { mockView }
+        viewProvider = { mockView }
     )
 
     class FakeUseCase {

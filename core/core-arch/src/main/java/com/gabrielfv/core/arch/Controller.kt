@@ -20,6 +20,10 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import com.gabrielfv.core.arch.navigation.NavigationAware
 
 private const val STATE_REGISTRY = "com.gabrielfv.core.arch.STATE_REGISTRY"
 
@@ -31,10 +35,11 @@ private const val STATE_REGISTRY = "com.gabrielfv.core.arch.STATE_REGISTRY"
  * This allows client code to leverage existing fragment navigation
  * and instance management solutions, like jetpack navigation.
  */
-abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> {
+abstract class Controller<S : Parcelable> : Fragment(),
+    ControllerDefinition<S>, NavigationAware {
     private val engine: ControllerDefinition<S> by lazy { ControllerEngine(view) }
     override val state: S get() = engine.state
-
+    override var navController: NavHostController? = null
     /**
      * Registers objects with a `.destroy()` routine to be called
      * upon controller's destruction. The same instance can be safely
@@ -90,5 +95,9 @@ abstract class Controller<S : Parcelable> : Fragment(), ControllerDefinition<S> 
 
     override fun setState(state: S) {
         engine.setState(state)
+    }
+
+    fun findNavController(): NavController {
+        return navController ?: findNavController(this)
     }
 }

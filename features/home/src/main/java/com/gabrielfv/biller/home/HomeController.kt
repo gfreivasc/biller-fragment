@@ -15,7 +15,6 @@
  */
 package com.gabrielfv.biller.home
 
-import androidx.navigation.fragment.findNavController
 import com.gabrielfv.biller.home.domain.FetchBillsUseCase
 import com.gabrielfv.biller.home.mapper.BillMapper
 import com.gabrielfv.biller.home.model.Bill
