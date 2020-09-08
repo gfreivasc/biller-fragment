@@ -1,5 +1,6 @@
 # Biller (with Fragments)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ae5b53f24b30423a9643174fbed8fd3a)](https://app.codacy.com/manual/gabriel.vasconcelos/biller-fragment?utm_source=github.com&utm_medium=referral&utm_content=gfreivasc/biller-fragment&utm_campaign=Badge_Grade_Dashboard)
 [![CI Status](https://circleci.com/gh/gfreivasc/biller-fragment.svg?style=svg)](https://app.circleci.com/pipelines/github/gfreivasc/biller-fragment)
 
 Under construction example of using fragments as controllers while aided by own tooling.
