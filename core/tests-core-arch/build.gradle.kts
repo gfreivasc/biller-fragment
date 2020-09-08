@@ -1,6 +1,7 @@
 plugins {
     libPlugin
     jacocoAndroid
+    androidOrchestrator
 }
 
 android {

@@ -16,34 +16,27 @@
 package plugins
 
 import com.android.build.gradle.BaseExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
-private const val DESUGARING_CONFIGURATION = "coreLibraryDesugaring"
-
-class CoreLibraryDesugaringPlugin : Plugin<Project> {
+class OrchestratorPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.dependency(DESUGARING_CONFIGURATION, Deps.coreLibDesugar)
-
+        target.dependency(
+            "androidTestImplementation",
+            Deps.androidTestRunner
+        )
+        target.dependency(
+            "androidTestUtil",
+            Deps.androidOrchestrator
+        )
         target.getAndroid<BaseExtension>().apply {
             defaultConfig {
-                multiDexEnabled = true
+                // This option currently clears coverage data
+//                testInstrumentationRunnerArguments["clearPackageData"] = "true"
             }
-
-            compileOptions {
-                isCoreLibraryDesugaringEnabled = true
-
-                sourceCompatibility(JavaVersion.VERSION_1_8)
-                targetCompatibility(JavaVersion.VERSION_1_8)
-            }
-
-            (this as ExtensionAware).configure<KotlinJvmOptions> {
-                jvmTarget = "1.8"
+            testOptions {
+                execution = "ANDROIDX_TEST_ORCHESTRATOR"
             }
         }
     }

@@ -40,5 +40,10 @@ gradlePlugin {
             id = "jacocoAndroid"
             implementationClass = "plugins.jacoco.JacocoCoveragePlugin"
         }
+
+        create("androidOrchestrator") {
+            id = "androidOrchestrator"
+            implementationClass = "plugins.OrchestratorPlugin"
+        }
     }
 }

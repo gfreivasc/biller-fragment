@@ -22,6 +22,7 @@ import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.DomainObjectSet
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.artifacts.Configuration
 import org.gradle.api.tasks.TaskContainer
 
 inline fun <reified Ex : BaseExtension> Project.getAndroid(): Ex =
@@ -39,4 +40,13 @@ val BaseExtension.variants: DomainObjectSet<out BaseVariant> get() =
         libraryVariants
     } else {
         (this as AppExtension).applicationVariants
+    }
+
+fun Project.dependency(config: String, notation: String): Boolean =
+    configuration(config).dependencies
+            .add(dependencies.create(notation))
+
+fun Project.configuration(config: String): Configuration =
+    configurations.run {
+        findByName(config) ?: create(config)
     }

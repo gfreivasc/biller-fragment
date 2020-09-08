@@ -36,6 +36,7 @@ object Versions {
     const val fragmentTesting = "1.2.4"
     const val espressoJUnit = "1.1.1"
     const val espresso = "3.2.0"
+    const val jetpackTest = "1.3.0"
 
     const val jacoco = "0.8.5"
 }
@@ -73,6 +74,8 @@ object Deps {
     const val mockK = "io.mockk:mockk:${Versions.mockK}"
     const val mockKAndroid = "io.mockk:mockk-android:${Versions.mockK}"
     const val espressoJUnit = "androidx.test.ext:junit:${Versions.espressoJUnit}"
+    const val androidTestRunner = "androidx.test:runner:${Versions.jetpackTest}"
+    const val androidOrchestrator = "androidx.test:orchestrator:${Versions.jetpackTest}"
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }

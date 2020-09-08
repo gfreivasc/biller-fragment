@@ -15,16 +15,18 @@
  */
 package plugins.jacoco
 
+import Versions
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.file.FileCollection
 import org.gradle.api.file.FileTree
-import org.gradle.api.logging.Logger
-import org.gradle.api.logging.Logging.getLogger
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
@@ -82,19 +84,16 @@ class JacocoCoveragePlugin : Plugin<Project> {
                 .map { it.path }
         val testTask = project.tasks
                 .getByName("test${name.capitalize()}UnitTest") as Test
-        val execData = (testTask as ExtensionAware).extensions
-                .getByType(JacocoTaskExtension::class)
-                .destinationFile!!
-                .path
+        val execData = project.getExecData(name)
 
         testTask.configure<JacocoTaskExtension> {
-            isIncludeNoLocationClasses = extension.includesNoLocationClasses
+            isIncludeNoLocationClasses = true
             excludes = listOf("jdk.internal.*")
         }
 
         return project.createReportTask(
-            sourceDirs,
-            listOf(execData),
+            project.files(sourceDirs),
+            execData,
             extension,
             testTask,
             this
@@ -102,8 +101,8 @@ class JacocoCoveragePlugin : Plugin<Project> {
     }
 
     private fun Project.createReportTask(
-        sourceDirs: List<String>,
-        execData: List<String>,
+        sourceDirs: FileCollection,
+        execData: FileCollection,
         extension: JacocoCoverageExtension,
         testTask: Test,
         variant: BaseVariant
@@ -120,8 +119,8 @@ class JacocoCoveragePlugin : Plugin<Project> {
                 html.isEnabled = extension.html.isEnabled
             }
 
-            sourceDirectories.setFrom(files(sourceDirs))
-            executionData.setFrom(files(execData))
+            sourceDirectories.setFrom(sourceDirs)
+            executionData.setFrom(execData)
             classDirectories.setFrom(
                 getClassTree(this@createReportTask, extension, variant)
             )
@@ -131,28 +130,34 @@ class JacocoCoveragePlugin : Plugin<Project> {
     private fun getClassTree(
         project: Project,
         extension: JacocoCoverageExtension,
-        variant: BaseVariant? = null
+        variant: BaseVariant
     ): FileTree {
-        val javaDir = variant?.let {
-            variant.javaCompileProvider.get().destinationDir
-        } ?: project.file("${project.buildDir}/intermediates/javac/debug")
-        val javaTree = project.fileTree(
-            "dir" to javaDir,
-            "excludes" to extension.excludes
-        )
+        val javaDir = variant.javaCompileProvider.get().destinationDir
+        val javaTree = project.fileTree(javaDir) {
+            exclude(extension.excludes)
+        }
 
         return if (project.plugins.hasPlugin("kotlin-android")) {
-            val kotlinDir = variant?.name?.let { name ->
+            val kotlinDir = variant.name.let { name ->
                 "${project.buildDir}/tmp/kotlin-classes/$name"
-            } ?: "${project.buildDir}/tmp/kotlin-classes/debug"
-
-            val kotlinTree = project.fileTree(
-                "dir" to kotlinDir,
-                "excludes" to extension.excludes
-            )
+            }
+            val kotlinTree = project.fileTree(kotlinDir) {
+                exclude(extension.excludes)
+            }
             javaTree + kotlinTree
         } else {
             javaTree
+        }
+    }
+
+    private fun Project.getExecData(
+        variantName: String
+    ): FileCollection {
+        return fileTree(buildDir) {
+            include(
+                "outputs/code_coverage/*AndroidTest/connected/**/*.ec",
+                "jacoco/test${variantName.capitalize()}UnitTest.exec"
+            )
         }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     libPlugin
     coreLibDesugar
     jacocoAndroid
+    androidOrchestrator
 }
 
 android {
