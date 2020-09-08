@@ -34,14 +34,11 @@ internal class ControllerEngine<S : Parcelable>(
             }
         }
     override val state: S
-        get() = try {
-            _state!!
-        } catch (ex: NullPointerException) {
-            throw IllegalStateException("""
+        get() = _state
+            ?: throw IllegalStateException("""
                 Attempted to access controller state prior to setting it.
                 Make sure that your state is set before trying to access it.
             """.trimIndent())
-        }
 
     override fun setState(state: S) {
         _state = state

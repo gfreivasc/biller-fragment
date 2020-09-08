@@ -105,7 +105,7 @@ class ControllerTest {
 
         val result = try {
             controller.findNavController()
-        } catch (ex: Exception) {
+        } catch (ex: IllegalStateException) {
             ex
         }
 

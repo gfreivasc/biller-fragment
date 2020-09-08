@@ -61,7 +61,7 @@ internal fun <S : Parcelable> ControllerDefinition<S>.initialize() {
     onInitialize(initialState)
     try {
         state
-    } catch (ex: Exception) {
+    } catch (ex: IllegalStateException) {
         throw IllegalStateException(
             """
                 [${this::class.java.simpleName}.onInitialize()] does not

@@ -27,6 +27,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
 
+private const val EMPTY = "Empty"
+
 class AddBillControllerTest {
     private val validator = NewBillValidator()
     private val useCase = mockk<AddBillUseCase>(relaxed = true)
@@ -74,10 +76,10 @@ class AddBillControllerTest {
     @Test
     fun validateEmptyNameReturnsCorrectMessage() {
         val subject = spyingRes(instantiate()) {
-            R.string.field_blank_error toString  "Empty"
+            R.string.field_blank_error toString EMPTY
         }
         subject.start()
-        val expected = mockState(nameError = "Empty")
+        val expected = mockState(nameError = EMPTY)
 
         subject.addBill(AddBillAction("", "5", isFixedValue = false))
 
@@ -87,10 +89,10 @@ class AddBillControllerTest {
     @Test
     fun validateEmptyFixedValueIfIsFixedReturnsCorrectMessage() {
         val subject = spyingRes(instantiate()) {
-            R.string.field_blank_error toString "Empty"
+            R.string.field_blank_error toString EMPTY
         }
         subject.start()
-        val expected = mockState(fixedValueError = "Empty")
+        val expected = mockState(fixedValueError = EMPTY)
 
         subject.addBill(AddBillAction("Lala", "5", true))
 

@@ -24,13 +24,11 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskContainer
 
-inline fun <reified Ex : BaseExtension> Project.getAndroid(): Ex = try {
-    extensions.findByType(Ex::class.java)!!
-} catch (ex: NullPointerException) {
-    throw IllegalArgumentException(
-        "Getting android extension on non-android module"
-    )
-}
+inline fun <reified Ex : BaseExtension> Project.getAndroid(): Ex =
+    extensions.findByType(Ex::class.java)
+        ?: throw IllegalArgumentException(
+            "Getting android extension on non-android module"
+        )
 
 inline fun <reified T : Task> TaskContainer.getOrCreate(name: String): T {
     return findByName(name) as? T ?: create(name, T::class.java)
