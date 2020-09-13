@@ -19,7 +19,7 @@ object Versions {
 
     const val coreLibDesugar = "1.0.9"
 
-    const val androidGradlePlugin = "4.2.0-alpha09"
+    const val androidGradlePlugin = "4.2.0-alpha10"
     const val androidCoreKtx = "1.3.1"
     const val androidSupport = "1.1.0"
     const val androidConstraint = "1.1.3"

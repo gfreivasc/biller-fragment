@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    val agpVer = "4.2.0-alpha09"
+    val agpVer = "4.2.0-alpha10"
     val kotlinVer = "1.4.0"
     val jacocoVer = "0.8.5"
     implementation(gradleApi())
