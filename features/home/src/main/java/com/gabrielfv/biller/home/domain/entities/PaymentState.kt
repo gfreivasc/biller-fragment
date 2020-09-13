@@ -15,9 +15,23 @@
  */
 package com.gabrielfv.biller.home.domain.entities
 
-enum class PaymentState {
-    OPEN,
-    TO_BE_EXPIRED,
-    EXPIRED,
-    PAID
+import android.os.Parcelable
+import com.gabrielfv.core.ktx.LocalDateParceler
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.TypeParceler
+import kotlinx.datetime.LocalDate
+
+@Parcelize
+@TypeParceler<LocalDate, LocalDateParceler>
+data class PaymentState(
+    val lastDate: LocalDate,
+    val state: State
+) : Parcelable {
+    enum class State {
+        OPEN,
+        TO_BE_EXPIRED,
+        EXPIRED,
+        FORGOTTEN,
+        PAID
+    }
 }

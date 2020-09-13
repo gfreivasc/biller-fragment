@@ -19,17 +19,29 @@ import com.gabrielfv.biller.addbill.data.LocalBillsSource
 import com.gabrielfv.biller.addbill.domain.entities.NewBill
 import com.gabrielfv.biller.addbill.domain.interfaces.BillsSource
 import com.gabrielfv.biller.database.entities.Bill
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class AddBillUseCase(
-    private val source: BillsSource = LocalBillsSource()
+    private val source: BillsSource = LocalBillsSource(),
+    private val clock: Clock = Clock.System,
+    private val timeZone: TimeZone = TimeZone.currentSystemDefault()
 ) {
 
     suspend fun execute(newBill: NewBill) {
         val bill = Bill(
+            registeredAt = clock.now()
+                    .toLocalDateTime(timeZone)
+                    .date,
             name = newBill.name,
             expiryDay = newBill.expiryDay,
             fixedValue = newBill.isFixedValue,
-            valueInCents = if (newBill.isFixedValue) newBill.fixedValue else null
+            valueInCents = if (newBill.isFixedValue) {
+                newBill.fixedValue
+            } else {
+                null
+            }
         )
         source.insert(bill)
     }

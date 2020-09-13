@@ -20,20 +20,43 @@ import com.gabrielfv.biller.addbill.domain.interfaces.BillsSource
 import com.gabrielfv.biller.database.entities.Bill
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.junit.Test
 
 class AddBillUseCaseTest {
     private val source = mockk<BillsSource>(relaxed = true)
     private val executor = InstantCoroutinesExecutor()
+    private val localDate = Instant.fromEpochSeconds(0)
+            .toLocalDateTime(TimeZone.UTC)
+            .date
+    private val clock = mockk<Clock> {
+        // UTC 1 Jan 1970 00:00
+        every { now() } returns Instant.fromEpochSeconds(0)
+    }
 
     @Test
     fun savesValueWithFixedValue() {
-        val subject = AddBillUseCase(source)
-        val expected = Bill(name = "A", expiryDay = 5, fixedValue = true, valueInCents = 100)
+        val subject = AddBillUseCase(source, clock, TimeZone.UTC)
+        val expected = Bill(
+            registeredAt = localDate,
+            name = "A",
+            expiryDay = 5,
+            fixedValue = true,
+            valueInCents = 100,
+        )
 
         executor.execute {
-            subject.execute(NewBill("A", 5, true, 100))
+            subject.execute(NewBill(
+                "A",
+                5,
+                true,
+                100,
+            ))
         }
 
         coVerify { source.insert(eq(expected)) }
@@ -41,11 +64,22 @@ class AddBillUseCaseTest {
 
     @Test
     fun ignoresValueWithoutFixedValue() {
-        val subject = AddBillUseCase(source)
-        val expected = Bill(name = "A", expiryDay = 5, fixedValue = false, valueInCents = null)
+        val subject = AddBillUseCase(source, clock, TimeZone.UTC)
+        val expected = Bill(
+            registeredAt = localDate,
+            name = "A",
+            expiryDay = 5,
+            fixedValue = false,
+            valueInCents = null,
+        )
 
         executor.execute {
-            subject.execute(NewBill("A", 5, false, 100))
+            subject.execute(NewBill(
+                "A",
+                5,
+                false,
+                100,
+            ))
         }
 
         coVerify { source.insert(eq(expected)) }

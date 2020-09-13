@@ -16,6 +16,7 @@
 package com.gabrielfv.biller.home.mapper
 
 import com.gabrielfv.biller.home.domain.entities.PaymentState
+import kotlinx.datetime.toLocalDate
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -82,7 +83,10 @@ class BillMapperTest {
     private fun domain(
         id: Long = 0L,
         name: String = "",
-        paymentState: PaymentState = PaymentState.OPEN,
+        paymentState: PaymentState = PaymentState(
+            "1970-01-01".toLocalDate(),
+            PaymentState.State.OPEN
+        ),
         fixedValue: Boolean = true,
         valueInCents: Int = 0,
     ) = DomainBill(id, name, paymentState, fixedValue, valueInCents)

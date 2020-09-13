@@ -17,10 +17,12 @@ package com.gabrielfv.biller.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.datetime.LocalDate
 
 @Entity
 data class Bill(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val registeredAt: LocalDate,
     val name: String,
     val expiryDay: Int,
     val fixedValue: Boolean = false,

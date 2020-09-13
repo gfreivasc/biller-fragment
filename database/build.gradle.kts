@@ -12,4 +12,6 @@ dependencies {
     implementation(Deps.roomDb)
     implementation(Deps.roomDbKtx)
     kapt(Deps.roomDbCompiler)
+
+    testImplementation(Deps.jUnit)
 }

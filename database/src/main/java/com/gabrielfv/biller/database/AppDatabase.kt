@@ -19,6 +19,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gabrielfv.biller.database.access.BillsDao
+import com.gabrielfv.biller.database.converters.LocalDateConverter
 import com.gabrielfv.biller.database.converters.MonthConverter
 import com.gabrielfv.biller.database.entities.Bill
 import com.gabrielfv.biller.database.entities.Payment
@@ -31,7 +32,10 @@ import com.gabrielfv.biller.database.entities.Payment
     version = 1,
     exportSchema = false
 )
-@TypeConverters(MonthConverter::class)
+@TypeConverters(value = [
+    MonthConverter::class,
+    LocalDateConverter::class
+])
 internal abstract class AppDatabase : RoomDatabase() {
     abstract fun billsDao(): BillsDao
 }

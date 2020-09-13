@@ -36,9 +36,9 @@ class FetchBillsUseCase(
 
         val latestPayment = getLatestPayment(billHistory)
         val paymentState = paymentStateMapper.map(
-            latestPayment?.year,
-            latestPayment?.month,
-            billHistory.bill.expiryDay
+            latestPayment?.date,
+            billHistory.bill.expiryDay,
+            bill.registeredAt
         )
 
         val valueInCents = if (bill.fixedValue) {
@@ -52,7 +52,7 @@ class FetchBillsUseCase(
             name = bill.name,
             paymentState = paymentState,
             fixedValue = bill.fixedValue,
-            valueInCents = valueInCents
+            valueInCents = valueInCents,
         )
     }
 

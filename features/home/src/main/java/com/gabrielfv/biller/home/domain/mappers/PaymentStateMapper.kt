@@ -15,40 +15,71 @@
  */
 package com.gabrielfv.biller.home.domain.mappers
 
-import com.gabrielfv.biller.home.domain.DateTimeSource
 import com.gabrielfv.biller.home.domain.entities.PaymentState
-import kotlinx.datetime.Month
+import kotlinx.datetime.*
+
+private const val MONTH_THRESHOLD = 2
 
 class PaymentStateMapper(
-    private val dateTimeSource: DateTimeSource = DateTimeSource()
+    private val clock: Clock = Clock.System,
+    private val timeZone: TimeZone = TimeZone.currentSystemDefault()
 ) {
 
-    fun map(lastYear: Int?, lastMonth: Month?, expiryDay: Int): PaymentState {
-        val (month, day) = dateTimeSource.getMonthAndDay()
-        val year = dateTimeSource.getYear()
+    fun map(
+        lastDate: LocalDate?,
+        expiryDay: Int,
+        registrationDate: LocalDate
+    ): PaymentState {
+        val current = clock.now()
+                .toLocalDateTime(timeZone)
+                .date
 
-        return if (month == lastMonth && year == lastYear) PaymentState.PAID
-        else when {
-            day > expiryDay -> PaymentState.EXPIRED
-            overAMonth(
-                lastYear,
-                lastMonth,
-                year,
-                month
-            ) -> PaymentState.EXPIRED
-            day > (expiryDay - 3) -> PaymentState.TO_BE_EXPIRED
-            else -> PaymentState.OPEN
+        val state = when {
+            sameMonth(lastDate, current) -> PaymentState.State.PAID
+            lastDate == null && forgottenSinceRegistration(
+                registrationDate,
+                current
+            ) -> PaymentState.State.FORGOTTEN
+            current.dayOfMonth > expiryDay -> PaymentState.State.EXPIRED
+            overAMonth(lastDate, current) -> PaymentState.State.EXPIRED
+            current.dayOfMonth > (expiryDay - 3) ->
+                PaymentState.State.TO_BE_EXPIRED
+            else -> PaymentState.State.OPEN
         }
+
+        return PaymentState(
+            lastDate ?: registrationDate,
+            state
+        )
+    }
+
+    private fun sameMonth(
+        lastDate: LocalDate?,
+        currentDate: LocalDate
+    ): Boolean {
+        return lastDate?.monthsUntil(currentDate) == 0
     }
 
     private fun overAMonth(
-        lastYear: Int?,
-        lastMonth: Month?,
-        currentYear: Int,
-        currentMonth: Month
+        lastDate: LocalDate?,
+        currentDate: LocalDate
     ): Boolean {
-        return if (lastYear == null || lastMonth == null) false
-        else if (lastYear == currentYear) currentMonth - 1 > lastMonth
-        else lastMonth != Month.DECEMBER || currentMonth != Month.JANUARY
+        return when {
+            lastDate == null -> false
+            lastDate.year == currentDate.year -> {
+                currentDate.month - 1 > lastDate.month
+            }
+            else -> {
+                lastDate.month != Month.DECEMBER ||
+                        currentDate.month != Month.JANUARY
+            }
+        }
+    }
+
+    private fun forgottenSinceRegistration(
+        registrationDate: LocalDate,
+        currentDate: LocalDate
+    ): Boolean {
+        return registrationDate.monthsUntil(currentDate) > MONTH_THRESHOLD
     }
 }

@@ -13,40 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gabrielfv.biller.home.domain
+package com.gabrielfv.biller.database.converters
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.datetime.Month
-import kotlinx.datetime.TimeZone
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class DateTimeSourceTest {
-    private val clock = object :  Clock {
-        override fun now(): Instant {
-            // Jan 1 1970 - 00:00 in UTC
-            return Instant.fromEpochSeconds(0)
-        }
+class MonthConverterTest {
+
+    @Test
+    fun correctlyConvertsToInt() {
+        val subject = MonthConverter()
+
+        val result = subject.toInt(Month.JUNE)
+
+        assertThat(result, `is`(6))
     }
 
     @Test
-    fun getMonthAndDayReturnsCorrectMonthAndDay() {
-        val subject = DateTimeSource(clock)
+    fun correctlyConvertsFromInt() {
+        val subject = MonthConverter()
 
-        val (month, day) = subject.getMonthAndDay(TimeZone.UTC)
+        val result = subject.fromInt(6)
 
-        assertThat(month, `is`(Month.JANUARY))
-        assertThat(day, `is`(1))
-    }
-
-    @Test
-    fun getYearReturnsCorrectYear() {
-        val subject = DateTimeSource(clock)
-
-        val year = subject.getYear(TimeZone.UTC)
-
-        assertThat(year, `is`(1970))
+        assertThat(result, `is`(Month.JUNE))
     }
 }
