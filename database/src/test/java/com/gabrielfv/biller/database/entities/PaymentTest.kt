@@ -15,20 +15,28 @@
  */
 package com.gabrielfv.biller.database.entities
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import kotlinx.datetime.*
-import kotlin.time.toDuration
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toLocalDate
+import org.junit.Test
 
-@Entity
-data class Payment(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
-    val date: LocalDate,
-    val billId: Long,
-    val valueInCents: Int,
-) : Comparable<Payment> {
+class PaymentTest {
 
-    override fun compareTo(other: Payment): Int {
-        return other.date.daysUntil(date)
+    @Test
+    fun correctlyComparesPaymentsByDate() {
+        val a = payment("2000-01-02".toLocalDate())
+        val b = payment("2000-01-03".toLocalDate())
+        val c = payment("2004-12-31".toLocalDate())
+        val d = payment("2005-01-01".toLocalDate())
+
+        assert(b > a)
+        assert(c > b)
+        assert(d > c)
+        assert(a < d)
     }
+
+    private fun payment(date: LocalDate) = Payment(
+        date = date,
+        billId = 0L,
+        valueInCents = 1000,
+    )
 }

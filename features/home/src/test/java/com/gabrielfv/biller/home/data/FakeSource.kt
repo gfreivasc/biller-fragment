@@ -19,6 +19,8 @@ import com.gabrielfv.biller.database.entities.Bill
 import com.gabrielfv.biller.database.entities.BillHistory
 import com.gabrielfv.biller.database.entities.Payment
 import com.gabrielfv.biller.home.domain.interfaces.BillsSource
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toLocalDate
 import java.time.Month
 
 class FakeSource : BillsSource {
@@ -34,9 +36,9 @@ class FakeSource : BillsSource {
             BillHistory(
                 bill(),
                 listOf(
-                    payment(2000, Month.JANUARY, 1000),
-                    payment(2020, Month.FEBRUARY, 1500),
-                    payment(2010, Month.DECEMBER, 2000),
+                    payment("2000-01-01".toLocalDate(), 1000),
+                    payment("2020-02-01".toLocalDate(), 1500),
+                    payment("2010-12-01".toLocalDate(), 2000),
                 )
             )
         )),
@@ -53,7 +55,11 @@ class FakeSource : BillsSource {
             BillHistory(bill(name = "D"), listOf(payment())),
             BillHistory(
                 bill(name = "E"),
-                listOf(payment(month = Month.JANUARY))
+                listOf(payment(date = "2020-01-01".toLocalDate()))
+            ),
+            BillHistory(
+                bill(name = "F", registeredAt = "2019-11-01".toLocalDate()),
+                listOf()
             )
         ))
     }
@@ -61,22 +67,22 @@ class FakeSource : BillsSource {
 
 private fun bill(
     name: String = "",
+    registeredAt: LocalDate = "2020-01-01".toLocalDate(),
     expiryDay: Int = 1,
     valueInCents: Int? = null
 ) = Bill(
     name = name,
+    registeredAt = registeredAt,
     expiryDay = expiryDay,
     fixedValue = false,
     valueInCents = valueInCents
 )
 
 private fun payment(
-    year: Int = 2020,
-    month: Month = Month.FEBRUARY,
+    date: LocalDate = "2020-02-01".toLocalDate(),
     valueInCents: Int = 0
 ) = Payment(
     billId = 0,
-    year = year,
-    month = month,
+    date = date,
     valueInCents = valueInCents
 )

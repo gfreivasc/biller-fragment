@@ -16,16 +16,17 @@
 package com.gabrielfv.biller.database.converters
 
 import androidx.room.TypeConverter
-import kotlinx.datetime.*
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toLocalDate
 
-class MonthConverter {
+class LocalDateConverter {
     @TypeConverter
-    fun toInt(month: Month?): Int? {
-        return month?.value
+    fun toString(value: LocalDate?): String? {
+        return value?.toString()
     }
 
     @TypeConverter
-    fun fromInt(value: Int?): Month? {
-        return value?.let { Month.of(it) }
+    fun fromString(value: String?): LocalDate? {
+        return value?.toLocalDate()
     }
 }

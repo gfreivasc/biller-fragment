@@ -21,19 +21,22 @@ import com.gabrielfv.biller.home.domain.mappers.PaymentStateMapper
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
-import java.time.Month
 
 typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
 
 class FetchBillsUseCaseTest {
     private val source = FakeSource()
+    private val timeZone = TimeZone.UTC
     private val stateMapper = PaymentStateMapper(mockk {
-        every { getMonthAndDay(any()) } returns Pair(Month.FEBRUARY, 2)
-        every { getYear(any()) } returns 2020
-    })
+        every { now() } returns Instant.parse(
+            "2020-02-02T00:00:00Z"
+        )
+    }, timeZone)
 
     @Test
     fun noDataReturnsEmpty() {
@@ -54,7 +57,7 @@ class FetchBillsUseCaseTest {
         val result = runBlocking { subject.execute() }
 
         val first = result.first()
-        assertThat(first.paymentState, `is`(PaymentState.PAID))
+        assertThat(first.paymentState.state, `is`(PaymentState.State.PAID))
         assertThat(first.valueInCents, `is`(1500))
     }
 
@@ -68,10 +71,11 @@ class FetchBillsUseCaseTest {
         val statesByName = result
                 .map { Pair(it.name, it.paymentState) }
                 .toMap()
-        assertThat(statesByName["A"], `is`(PaymentState.EXPIRED))
-        assertThat(statesByName["B"], `is`(PaymentState.TO_BE_EXPIRED))
-        assertThat(statesByName["C"], `is`(PaymentState.OPEN))
-        assertThat(statesByName["D"], `is`(PaymentState.PAID))
-        assertThat(statesByName["E"], `is`(PaymentState.EXPIRED))
+        assertThat(statesByName["A"]?.state, `is`(PaymentState.State.EXPIRED))
+        assertThat(statesByName["B"]?.state, `is`(PaymentState.State.TO_BE_EXPIRED))
+        assertThat(statesByName["C"]?.state, `is`(PaymentState.State.OPEN))
+        assertThat(statesByName["D"]?.state, `is`(PaymentState.State.PAID))
+        assertThat(statesByName["E"]?.state, `is`(PaymentState.State.EXPIRED))
+        assertThat(statesByName["F"]?.state, `is`(PaymentState.State.FORGOTTEN))
     }
 }

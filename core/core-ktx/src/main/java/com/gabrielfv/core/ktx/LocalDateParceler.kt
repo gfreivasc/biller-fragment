@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gabrielfv.biller.database.converters
+package com.gabrielfv.core.ktx
 
-import androidx.room.TypeConverter
-import kotlinx.datetime.*
+import android.os.Parcel
+import kotlinx.android.parcel.Parceler
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toLocalDate
 
-class MonthConverter {
-    @TypeConverter
-    fun toInt(month: Month?): Int? {
-        return month?.value
+object LocalDateParceler : Parceler<LocalDate> {
+    override fun create(parcel: Parcel): LocalDate {
+        return parcel.readString()!!.toLocalDate()
     }
 
-    @TypeConverter
-    fun fromInt(value: Int?): Month? {
-        return value?.let { Month.of(it) }
+    override fun LocalDate.write(parcel: Parcel, flags: Int) {
+        parcel.writeString(toString())
     }
 }

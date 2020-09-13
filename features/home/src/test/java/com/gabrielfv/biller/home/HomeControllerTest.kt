@@ -16,23 +16,19 @@
 package com.gabrielfv.biller.home
 
 import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
 import com.gabrielfv.biller.home.domain.FetchBillsUseCase
 import com.gabrielfv.biller.home.domain.entities.PaymentState
-import com.gabrielfv.biller.home.domain.interfaces.BillsSource
 import com.gabrielfv.biller.home.mapper.BillMapper
 import com.gabrielfv.biller.home.model.Bill
 import com.gabrielfv.biller.home.model.Payment
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.coroutines.InstantCoroutinesExecutor
-import com.gabrielfv.core.arch.extras.ViewProvider
 import com.gabrielfv.core.nav.NavRegistry
 import com.gabrielfv.core.nav.Routes
 import com.gabrielfv.core.test.start
 import com.gabrielfv.core.test.stateBundle
 import io.mockk.*
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
+import kotlinx.datetime.toLocalDate
 import org.junit.Test
 
 private typealias DomainBill = com.gabrielfv.biller.home.domain.entities.Bill
@@ -138,8 +134,8 @@ class HomeControllerTest {
     class FakeUseCase {
         fun execute(): List<DomainBill> {
             return listOf(
-                DomainBill(1, "foo", PaymentState.PAID, valueInCents = 1000),
-                DomainBill(2, "bar", PaymentState.EXPIRED)
+                DomainBill(1, "foo", payment(PaymentState.State.PAID), valueInCents = 1000),
+                DomainBill(2, "bar", payment(PaymentState.State.EXPIRED))
             )
         }
     }
@@ -148,13 +144,19 @@ class HomeControllerTest {
         id = 1,
         name = "foo",
         payment = Payment("10", 0),
-        state = PaymentState.PAID,
+        state = payment(PaymentState.State.PAID),
     )
 
     private fun viewExpired() = Bill(
         id = 2,
         name = "bar",
         payment = null,
-        state = PaymentState.EXPIRED,
+        state = payment(PaymentState.State.EXPIRED),
     )
+
+    companion object {
+        fun payment(state: PaymentState.State): PaymentState {
+            return PaymentState("1999-01-01".toLocalDate(), state)
+        }
+    }
 }
