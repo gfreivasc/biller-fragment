@@ -17,8 +17,8 @@ package com.gabrielfv.biller.home.domain.entities
 
 import android.os.Parcelable
 import com.gabrielfv.core.ktx.LocalDateParceler
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.TypeParceler
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.TypeParceler
 import kotlinx.datetime.LocalDate
 
 @Parcelize

@@ -29,7 +29,7 @@ internal class AndroidBasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target.plugins) {
             apply("kotlin-android")
-            apply("kotlin-android-extensions")
+            apply("kotlin-parcelize")
         }
 
         target.getAndroid<BaseExtension>().apply {

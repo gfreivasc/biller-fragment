@@ -16,7 +16,7 @@
 package com.gabrielfv.core.ktx
 
 import android.os.Parcel
-import kotlinx.android.parcel.Parceler
+import kotlinx.parcelize.Parceler
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toLocalDate
 

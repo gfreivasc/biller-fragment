@@ -16,7 +16,7 @@
 package com.gabrielfv.biller.addbill.domain
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import kotlinx.android.parcel.RawValue
 
 sealed class Either<out L, out R> : Parcelable {

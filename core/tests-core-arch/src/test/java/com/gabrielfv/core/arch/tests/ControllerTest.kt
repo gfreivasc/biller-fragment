@@ -26,7 +26,7 @@ import com.gabrielfv.core.arch.View
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat

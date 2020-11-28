@@ -17,7 +17,7 @@ package com.gabrielfv.biller.home.model
 
 import android.os.Parcelable
 import com.gabrielfv.biller.home.domain.entities.PaymentState
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Bill(

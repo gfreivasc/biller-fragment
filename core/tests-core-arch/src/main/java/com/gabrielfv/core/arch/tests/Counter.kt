@@ -21,8 +21,8 @@ import android.view.ViewGroup
 import com.gabrielfv.core.arch.Controller
 import com.gabrielfv.core.arch.View
 import com.gabrielfv.core.arch.extras.ViewProvider
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.counter_view.view.*
+import com.gabrielfv.core.arch.tests.databinding.CounterViewBinding
+import kotlinx.parcelize.Parcelize
 
 abstract class CounterController : Controller<CounterState>() {
 
@@ -42,27 +42,23 @@ class DefaultCounterController(
 class CounterView(
     override val controller: CounterController
 ) : View<CounterState> {
-    lateinit var view: android.view.View
+    lateinit var binding: CounterViewBinding
 
     override fun inflate(
         inflater: LayoutInflater,
         root: ViewGroup?
     ): android.view.View {
-        return inflater
-                .inflate(R.layout.counter_view, root, false)
-                .also { view ->
-                    this.view = view
-                    onStart()
-                }
+        binding = CounterViewBinding.inflate(inflater, root, false)
+        return binding.root
     }
 
     override fun onStart() {
-        view.incButton.setOnClickListener { controller.inc() }
-        view.decButton.setOnClickListener { controller.dec() }
+        binding.incButton.setOnClickListener { controller.inc() }
+        binding.decButton.setOnClickListener { controller.dec() }
     }
 
     override fun updateState(state: CounterState) {
-        view.counter.text = "${state.count}"
+        binding.counter.text = "${state.count}"
     }
 }
 
