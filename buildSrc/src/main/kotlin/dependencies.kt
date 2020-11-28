@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 object Versions {
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.20"
     const val kotlinxDatetime = "0.1.0"
 
     const val coreLibDesugar = "1.0.9"
 
-    const val androidGradlePlugin = "4.2.0-alpha10"
+    const val androidGradlePlugin = "4.2.0-alpha16"
     const val androidCoreKtx = "1.3.1"
     const val androidSupport = "1.1.0"
     const val androidConstraint = "1.1.3"

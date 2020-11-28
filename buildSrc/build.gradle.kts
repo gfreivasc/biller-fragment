@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.20"
     `kotlin-dsl`
 }
 
@@ -9,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    val agpVer = "4.2.0-alpha10"
-    val kotlinVer = "1.4.0"
+    val agpVer = "4.2.0-alpha16"
+    val kotlinVer = "1.4.20"
     val jacocoVer = "0.8.5"
     implementation(gradleApi())
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVer")
